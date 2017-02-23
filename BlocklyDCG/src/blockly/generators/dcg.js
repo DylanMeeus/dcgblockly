@@ -144,10 +144,6 @@ Blockly.Dcg.init = function(workspace) {
 
     var defvars = [];
     var variables = workspace.variableList;
-    for (var i = 0; i < variables.length; i++) {
-        defvars[i] = Blockly.Dcg.variableDB_.getName(variables[i],
-                Blockly.Variables.NAME_TYPE) + ' = None';
-    }
     Blockly.Dcg.definitions_['variables'] = defvars.join('\n');
 };
 
