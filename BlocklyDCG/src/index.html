@@ -16,10 +16,12 @@
 
         <!-- blockly scripts -->
         <script src="blockly/blockly_compressed.js"></script>
+        <script src="blockly/dcg_compressed.js"></script>
         <script src="blockly/blocks_compressed.js"></script>
 
         <!-- blockly language -->
         <script src="blockly/msg/js/nl.js"></script>
+        <script src="blockly/blocks/eval.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -42,15 +44,27 @@
             <block type="text"></block>
             <block type="text_print"></block>
             <block type="variables_set"></block>
+            <block type="variables_get"></block>
+            <block type="eval"></block>
         </xml>
+
+        <div id="ruletext">
+            test
+        </div>
+
+        <button onclick="generateCode()">generate</button>
 
         <script>
             var workspace = Blockly.inject('blocklyDiv',
                 {media: '../../media/',
                     toolbox: document.getElementById('toolbox')});
+
+            function generateCode() {
+                var code = Blockly.Dcg.workspaceToCode(workspace);
+                document.getElementById('ruletext').innerHTML = code;
+                console.log("set code: " + code)
+            }
         </script>
-
-
 
     </body>
 </html>
