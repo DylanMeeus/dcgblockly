@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="lis" pattern="lib:uz..*..lis..*||src:uz..*..lis..*" />
+</component>

@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="s9server" pattern="src:uz.s9server..*||lib:uz.s9server..*" />
+</component>
