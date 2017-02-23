@@ -15,18 +15,35 @@
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
         <!-- blockly scripts -->
-        <script src="blockly/blockly_compressed.js"></script>
-        <script src="blockly/dcg_compressed.js"></script>
-        <script src="blockly/blocks_compressed.js"></script>
+        <script src="blockly/blockly_uncompressed.js"></script>
+
+        <!-- generator script -->
+        <script src="blockly/generators/dcg.js"></script>
 
         <!-- blockly language -->
         <script src="blockly/msg/js/nl.js"></script>
         <script src="blockly/blocks/eval.js"></script>
+
+        <script src="blockly/blocks/logic.js"></script>
+        <script src="blockly/blocks/loops.js"></script>
+        <script src="blockly/blocks/math.js"></script>
+        <script src="blockly/blocks/text.js"></script>
+        <script src="blockly/blocks/lists.js"></script>
+        <script src="blockly/blocks/variables.js"></script>
+        <script src="blockly/blocks/procedures.js"></script>
+
+
+
+        <!-- python examples -->
+        <script src="blockly/generators/python/text.js"></script>
+
+
+        <!-- dcg examples -->
+        <script src="blockly/generators/dcg/text.js"></script>
+        <script src="blockly/generators/dcg/variables.js"></script>
+
     </head>
     <body>
-        <!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
 
         <!-- Add your site or application content here -->
         <p>DCG editor</p>
@@ -36,21 +53,23 @@
         <div id="blocklyDiv" style="height: 700px; width: 800px;"></div>
 
         <xml id="toolbox" style="display: none">
-            <block type="controls_if"></block>
-            <block type="logic_compare"></block>
-            <block type="controls_repeat_ext"></block>
-            <block type="math_number"></block>
-            <block type="math_arithmetic"></block>
+            <!--<block type="controls_if"></block>-->
+            <!--<block type="logic_compare"></block>-->
+            <!--<block type="controls_repeat_ext"></block>-->
+            <!-- <block type="math_number"></block> -->
+            <!--<block type="math_arithmetic"></block>-->
             <block type="text"></block>
+            <block type="text_append"></block>
             <block type="text_print"></block>
             <block type="variables_set"></block>
             <block type="variables_get"></block>
             <block type="eval"></block>
+            <!--<block type="procedures_defnoreturn"></block>-->
         </xml>
 
-        <div id="ruletext">
+        <textarea id="ruletext">
             test
-        </div>
+        </textarea>
 
         <button onclick="generateCode()">generate</button>
 
