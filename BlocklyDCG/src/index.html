@@ -36,11 +36,13 @@
 
         <!-- python examples -->
         <script src="blockly/generators/python/text.js"></script>
+        <script src="blockly/generators/python/variables.js"></script>
 
 
         <!-- dcg examples -->
         <script src="blockly/generators/dcg/text.js"></script>
         <script src="blockly/generators/dcg/variables.js"></script>
+        <script src="blockly/generators/dcg/eval.js"></script>
 
         <style>
             html, body {
@@ -136,7 +138,9 @@
             Blockly.svgResize(workspace);
 
             function generateCode() {
-                var code = Blockly.Dcg.workspaceToCode(workspace);
+                var code = "rule TESTRULE{\n"
+                code += Blockly.Dcg.workspaceToCode(workspace);
+                code += "}"
                 document.getElementById('ruletext').innerHTML = code;
                 console.log("set code: " + code)
             }

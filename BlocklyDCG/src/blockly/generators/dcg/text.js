@@ -70,13 +70,13 @@ Blockly.Python['text_join'] = function(block) {
   }
 };
 
-Blockly.Python['text_append'] = function(block) {
+Blockly.Dcg['text_append'] = function(block) {
   // Append to a variable in place.
-  var varName = Blockly.Python.variableDB_.getName(block.getFieldValue('VAR'),
+  var varName = Blockly.Dcg.variableDB_.getName(block.getFieldValue('VAR'),
       Blockly.Variables.NAME_TYPE);
-  var value = Blockly.Python.valueToCode(block, 'TEXT',
-      Blockly.Python.ORDER_NONE) || '\'\'';
-  return varName + ' = str(' + varName + ') + str(' + value + ')\n';
+  var value = Blockly.Dcg.valueToCode(block, 'TEXT',
+      Blockly.Dcg.ORDER_NONE) || '\'\'';
+  return '_' + varName + ' = ' + varName + ' + ' + value + '\n';
 };
 
 Blockly.Python['text_length'] = function(block) {
@@ -222,7 +222,8 @@ Blockly.Dcg['text_print'] = function(block) {
   // Print statement.
   var msg = Blockly.Dcg.valueToCode(block, 'TEXT',
       Blockly.Dcg.ORDER_NONE) || '\'\'';
-  return '|' + msg.substr(1,msg.length-2) + '|\n';
+  msg = msg.replace(/'/g, "");
+  return '|' + msg + '|\n';
 };
 
 Blockly.Dcg['text_prompt_ext'] = function(block) {

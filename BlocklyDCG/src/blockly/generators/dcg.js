@@ -144,6 +144,10 @@ Blockly.Dcg.init = function(workspace) {
 
     var defvars = [];
     var variables = workspace.variableList;
+    for (var i = 0; i < variables.length; i++) {
+        defvars[i] = Blockly.Dcg.variableDB_.getName(variables[i],
+            Blockly.Variables.NAME_TYPE);
+    }
     Blockly.Dcg.definitions_['variables'] = defvars.join('\n');
 };
 
@@ -154,22 +158,15 @@ Blockly.Dcg.init = function(workspace) {
  */
 Blockly.Dcg.finish = function(code) {
     // Convert the definitions dictionary into a list.
-    var imports = [];
     var definitions = [];
     for (var name in Blockly.Dcg.definitions_) {
-        var def = Blockly.Dcg.definitions_[name];
-        if (def.match(/^(from\s+\S+\s+)?import\s+\S+/)) {
-            imports.push(def);
-        } else {
-            definitions.push(def);
-        }
+        definitions.push(Blockly.Dcg.definitions_[name]);
     }
     // Clean up temporary data.
     delete Blockly.Dcg.definitions_;
     delete Blockly.Dcg.functionNames_;
     Blockly.Dcg.variableDB_.reset();
-    var allDefs = imports.join('\n') + '\n\n' + definitions.join('\n\n');
-    return allDefs.replace(/\n\n+/g, '\n\n').replace(/\n*$/, '\n\n\n') + code;
+    return definitions.join('\n\n') + '\n\n\n' + code;
 };
 
 /**
