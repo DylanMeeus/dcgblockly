@@ -91,13 +91,14 @@
             <tr>
                 <td>
                     <h1> DCG Editor met <a href="https://developers.google.com/blockly/"> BlockLy </a> PoC </h1>
+                <button onclick="saveWorkspace()"> Save </button>
+                <button onclick="loadFromXML()"> Load </button>
             </tr>
             <tr>
                 <td id="blocklyArea" style="width: 60%">
                 </td>
                 <td id="editorArea" style="width: 40%">
                     <textarea id="ruletext" style="width: 100%; height: 100%">
-
                     </textarea>
                 </td>
             </tr>
@@ -156,11 +157,23 @@
                 code += Blockly.Dcg.workspaceToCode(workspace);
                 code += "\n}"
                 document.getElementById('ruletext').innerHTML = code;
-                console.log("set code: " + code)
             }
             setInterval(generateCode, 100);
 
-            // ace editor
+
+            function saveWorkspace(){
+                var xml = Blockly.Xml.workspaceToDom(workspace);
+                var xmlText = Blockly.Xml.domToText(xml);
+                console.log(xmlText);
+            }
+
+            function loadFromXML(){
+                var xml = prompt("xml");
+                var dom = Blockly.Xml.textToDom(xml);
+                Blockly.mainWorkspace.clear();
+                Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
+            }
+
         </script>
 
     </body>
