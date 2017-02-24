@@ -38,7 +38,7 @@ Blockly.Dcg['controls_if'] = function(block) {
       Blockly.Dcg.ORDER_NONE) || 'false';
     branchCode = Blockly.Dcg.statementToCode(block, 'DO' + n) ||
         Blockly.Dcg.PASS;
-    code += (n == 0 ? 'if ' : 'else ' ) + '(' + conditionCode + ') then\n{\n' + branchCode;
+    code += (n == 0 ? 'if ' : 'else if ' ) + '(' + conditionCode + ') then\n{\n' + branchCode;
 
     ++n;
   } while (block.getInput('IF' + n));
