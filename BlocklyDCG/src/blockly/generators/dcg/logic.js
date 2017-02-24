@@ -38,7 +38,7 @@ Blockly.Dcg['controls_if'] = function(block) {
       Blockly.Dcg.ORDER_NONE) || 'false';
     branchCode = Blockly.Dcg.statementToCode(block, 'DO' + n) ||
         Blockly.Dcg.PASS;
-    code += (n == 0 ? 'if ' : 'elif ' ) + conditionCode + ':\n' + branchCode;
+    code += (n == 0 ? 'if ' : 'else ' ) + '(' + conditionCode + ') then\n{\n' + branchCode;
 
     ++n;
   } while (block.getInput('IF' + n));
@@ -46,8 +46,9 @@ Blockly.Dcg['controls_if'] = function(block) {
   if (block.getInput('ELSE')) {
     branchCode = Blockly.Dcg.statementToCode(block, 'ELSE') ||
         Blockly.Dcg.PASS;
-    code += 'else:\n' + branchCode;
+    code += '}\nelse \n{\n' + branchCode;
   }
+    code += "}";
   return code;
 };
 
@@ -56,8 +57,8 @@ Blockly.Dcg['controls_ifelse'] = Blockly.Dcg['controls_if'];
 Blockly.Dcg['logic_compare'] = function(block) {
   // Comparison operator.
   var OPERATORS = {
-    'EQ': '==',
-    'NEQ': '!=',
+    'EQ': '=',
+    'NEQ': '\\=',
     'LT': '<',
     'LTE': '<=',
     'GT': '>',

@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/comment.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/eval.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/logic.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/build.py" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/comment.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/eval.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/logic.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/text.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/variables.js" charset="UTF-8" />
   </component>
 </project>

@@ -86,12 +86,12 @@ Blockly.Python['text_length'] = function(block) {
   return ['len(' + text + ')', Blockly.Python.ORDER_FUNCTION_CALL];
 };
 
-Blockly.Python['text_isEmpty'] = function(block) {
+Blockly.Dcg['text_isEmpty'] = function(block) {
   // Is the string null or array empty?
-  var text = Blockly.Python.valueToCode(block, 'VALUE',
-      Blockly.Python.ORDER_NONE) || '\'\'';
-  var code = 'not len(' + text + ')';
-  return [code, Blockly.Python.ORDER_LOGICAL_NOT];
+  var text = Blockly.Dcg.valueToCode(block, 'VALUE',
+      Blockly.Dcg.ORDER_NONE) || '\'\'';
+  var code =  text + ' = \"\"';
+  return [code, Blockly.Dcg.ORDER_LOGICAL_NOT];
 };
 
 Blockly.Python['text_indexOf'] = function(block) {

@@ -1,30 +1,7 @@
 /**
  * Created by dmeeus1 on 23-2-2017.
  */
-/**
- * @license
- * Visual Blocks Language
- *
- * Copyright 2012 Google Inc.
- * https://developers.google.com/blockly/
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
-/**
- * @fileoverview Helper functions for generating Python for blocks.
- * @author fraser@google.com (Neil Fraser)
- */
 'use strict';
 
 goog.provide('Blockly.Dcg');
@@ -152,7 +129,8 @@ Blockly.Dcg.init = function(workspace) {
 };
 
 /**
- * Prepend the generated code with the variable definitions.
+ * Just return the code. In some languages we apperantly prepend variable definitions.
+ * This makes them appear at the top of the "method". Which I think DCG does not need.
  * @param {string} code Generated code.
  * @return {string} Completed code.
  */
@@ -166,7 +144,7 @@ Blockly.Dcg.finish = function(code) {
     delete Blockly.Dcg.definitions_;
     delete Blockly.Dcg.functionNames_;
     Blockly.Dcg.variableDB_.reset();
-    return definitions.join('\n\n') + '\n\n\n' + code;
+    return code;
 };
 
 /**

@@ -311,19 +311,15 @@ Blockly.Blocks['logic_compare'] = {
   init: function() {
     var rtlOperators = [
       ['=', 'EQ'],
-      ['\u2260', 'NEQ'],
+      ['\\=', 'NEQ'],
       ['\u200F<\u200F', 'LT'],
-      ['\u200F\u2264\u200F', 'LTE'],
       ['\u200F>\u200F', 'GT'],
-      ['\u200F\u2265\u200F', 'GTE']
     ];
     var ltrOperators = [
       ['=', 'EQ'],
-      ['\u2260', 'NEQ'],
+      ['\\=', 'NEQ'],
       ['<', 'LT'],
-      ['\u2264', 'LTE'],
       ['>', 'GT'],
-      ['\u2265', 'GTE']
     ];
     var OPERATORS = this.RTL ? rtlOperators : ltrOperators;
     this.setHelpUrl(Blockly.Msg.LOGIC_COMPARE_HELPURL);

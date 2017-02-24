@@ -23,6 +23,7 @@
         <!-- blockly language -->
         <script src="blockly/msg/js/nl.js"></script>
         <script src="blockly/blocks/eval.js"></script>
+        <script src="blockly/blocks/comment.js"></script>
 
         <script src="blockly/blocks/logic.js"></script>
         <script src="blockly/blocks/loops.js"></script>
@@ -31,7 +32,6 @@
         <script src="blockly/blocks/lists.js"></script>
         <script src="blockly/blocks/variables.js"></script>
         <script src="blockly/blocks/procedures.js"></script>
-
 
 
         <!-- python examples -->
@@ -43,6 +43,8 @@
         <script src="blockly/generators/dcg/text.js"></script>
         <script src="blockly/generators/dcg/variables.js"></script>
         <script src="blockly/generators/dcg/eval.js"></script>
+        <script src="blockly/generators/dcg/logic.js"></script>
+        <script src="blockly/generators/dcg/comment.js"></script>
 
         <style>
             html, body {
@@ -50,7 +52,6 @@
                 margin: 0;
             }
             body {
-                background-color: #fff;
                 font-family: sans-serif;
                 overflow: hidden;
             }
@@ -59,6 +60,7 @@
                 font-size: 140%;
             }
             table {
+                background-color: #fdf6e3;
                 height: 100%;
                 width: 100%;
             }
@@ -79,9 +81,11 @@
             <tr>
                 <td>
                     <h1> DCG Editor met blockly PoC </h1>
+<!--
                     <button onclick="generateCode()">generate</button>
+-->
 
-                    <textarea id="ruletext" style="width: 500px; height: 100px">
+                    <textarea id="ruletext" style="width: 500px; height: 150px">
                             test
                     </textarea>
 
@@ -96,7 +100,8 @@
         <div id="blocklyDiv" style="position: absolute"></div>
 
         <xml id="toolbox" style="display: none">
-            <!--<block type="controls_if"></block>-->
+            <block type="controls_if"></block>
+            <block type="logic_compare"></block>
             <!--<block type="logic_compare"></block>-->
             <!--<block type="controls_repeat_ext"></block>-->
             <!-- <block type="math_number"></block> -->
@@ -104,9 +109,11 @@
             <block type="text"></block>
             <block type="text_append"></block>
             <block type="text_print"></block>
+            <block type="text_isEmpty"></block>
             <block type="variables_set"></block>
             <block type="variables_get"></block>
             <block type="eval"></block>
+            <block type="singleComment"></block>
             <!--<block type="procedures_defnoreturn"></block>-->
         </xml>
 
@@ -140,10 +147,11 @@
             function generateCode() {
                 var code = "rule TESTRULE{\n"
                 code += Blockly.Dcg.workspaceToCode(workspace);
-                code += "}"
+                code += "\n}"
                 document.getElementById('ruletext').innerHTML = code;
                 console.log("set code: " + code)
             }
+            setInterval(generateCode, 100);
         </script>
 
     </body>
