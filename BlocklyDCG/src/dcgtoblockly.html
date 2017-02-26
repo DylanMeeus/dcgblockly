@@ -14,6 +14,10 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
+
+        <!-- transpiler script -->
+        <script src="js/dcgtranspiler.js"></script>
+
         <!-- blockly scripts -->
         <script src="blockly/blockly_uncompressed.js"></script>
 
@@ -91,9 +95,8 @@
             <tr>
                 <td>
                     <h1> DCG Editor met <a href="https://developers.google.com/blockly/"> BlockLy </a> PoC </h1>
-                    <a href="dcgtoblockly.html">DCG to blockly</a>
-                <button onclick="saveWorkspace()"> Save </button>
-                <button onclick="loadFromXML()"> Load </button>
+                    <a href="index.html">Blockly to DCG</a>
+                    <button onclick="loadFromDCG()">Transpile</button>
             </tr>
             <tr>
                 <td id="blocklyArea" style="width: 60%">
@@ -153,14 +156,13 @@
             onresize();
             Blockly.svgResize(workspace);
 
-            function generateCode() {
-                var code = "rule TESTRULE{\n"
-                code += Blockly.Dcg.workspaceToCode(workspace);
-                code += "\n}"
-                document.getElementById('ruletext').innerHTML = code;
-            }
-            setInterval(generateCode, 100);
 
+            function loadFromDCG(){
+                // go from DCG to XML
+                var dcgText = document.getElementById('ruletext').value;
+                var xml = transpileDcgToXML(dcgText);
+                loadFromXML(xml);
+            }
 
             function saveWorkspace(){
                 var xml = Blockly.Xml.workspaceToDom(workspace);
@@ -168,12 +170,17 @@
                 console.log(xmlText);
             }
 
-            function loadFromXML(){
-                var xml = prompt("xml");
+            function loadFromXML(xml){
                 var dom = Blockly.Xml.textToDom(xml);
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
             }
+
+            // preload some text into the editor.
+            var editor = document.getElementById('ruletext');
+            editor.value = "_var = 'hello world!'\n\n|This is user output|\n@This is a comment@";
+
+            // todo: more advanced parsing?
 
         </script>
 
