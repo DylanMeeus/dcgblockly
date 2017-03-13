@@ -32,6 +32,7 @@
         <script src="blockly/blocks/lists.js"></script>
         <script src="blockly/blocks/variables.js"></script>
         <script src="blockly/blocks/procedures.js"></script>
+        <script src="blockly/blocks/html.js"></script>
 
 
         <!-- python examples -->
@@ -45,6 +46,7 @@
         <script src="blockly/generators/dcg/eval.js"></script>
         <script src="blockly/generators/dcg/logic.js"></script>
         <script src="blockly/generators/dcg/comment.js"></script>
+        <script src="blockly/generators/dcg/html.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
 
@@ -108,21 +110,37 @@
         <div id="blocklyDiv" style="position: absolute"></div>
 
         <xml id="toolbox" style="display: none">
-            <block type="controls_if"></block>
-            <block type="logic_compare"></block>
-            <block type="logic_operation"></block>
+
+            <category name="Logica">
+                <block type="controls_if"></block>
+                <block type="logic_compare"></block>
+                <block type="logic_operation"></block>
+            </category>
             <!--<block type="logic_compare"></block>-->
             <!--<block type="controls_repeat_ext"></block>-->
             <!-- <block type="math_number"></block> -->
             <!--<block type="math_arithmetic"></block>-->
-            <block type="text"></block>
-            <block type="text_append"></block>
-            <block type="text_print"></block>
-            <block type="text_isEmpty"></block>
-            <block type="eval"></block>
-            <block type="singleComment"></block>
-            <block type="variables_set"></block>
-            <block type="variables_get"></block>
+            <category name="Text">
+                <block type="text"></block>
+                <block type="text_append"></block>
+                <block type="text_print"></block>
+                <block type="text_isEmpty"></block>
+            </category>
+
+            <category name="Varia">
+                <block type="eval"></block>
+                <block type="singleComment"></block>
+            </category>
+
+            <category name="Variabelen">
+                <block type="variables_set"></block>
+                <block type="variables_get"></block>
+            </category>
+
+            <category name="HTML"> <!-- todo: rename to layout or something similar -->
+                <block type="html_bold"></block>
+            </category>
+
             <!--<block type="procedures_defnoreturn"></block>-->
         </xml>
 

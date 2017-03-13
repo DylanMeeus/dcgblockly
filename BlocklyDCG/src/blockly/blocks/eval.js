@@ -3,7 +3,7 @@ Blockly.Blocks['eval'] = {
         this.appendValueInput('VALUE')
             .setCheck('String')
             .appendField('eval regel: ');
-        this.setColour(160);
+        this.setColour("#ff0000");
         this.setTooltip('Laad een andere DCG regel.');
         this.setHelpUrl('wiki');
         this.setNextStatement(true);

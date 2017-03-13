@@ -1894,7 +1894,10 @@
     <inspection_tool class="ReflectionForUnavailableAnnotation" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="UZ Module" level="ERROR" enabled="true" />
     </inspection_tool>
-    <inspection_tool class="RefusedBequest" enabled="false" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="RefusedBequest" enabled="false" level="WARNING" enabled_by_default="true">
+      <option name="ignoreEmptySuperMethods" value="false" />
+      <option name="onlyReportWhenAnnotated" value="true" />
+    </inspection_tool>
     <inspection_tool class="ReplaceAllDot" enabled="true" level="WARNING" enabled_by_default="true">
       <scope name="UZ Module" level="ERROR" enabled="true" />
     </inspection_tool>
