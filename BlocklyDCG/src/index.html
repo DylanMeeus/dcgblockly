@@ -33,6 +33,7 @@
         <script src="blockly/blocks/variables.js"></script>
         <script src="blockly/blocks/procedures.js"></script>
         <script src="blockly/blocks/html.js"></script>
+        <script src="blockly/blocks/lists.js"></script>
 
 
         <!-- python examples -->
@@ -47,6 +48,7 @@
         <script src="blockly/generators/dcg/logic.js"></script>
         <script src="blockly/generators/dcg/comment.js"></script>
         <script src="blockly/generators/dcg/html.js"></script>
+        <script src="blockly/generators/dcg/lists.js"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
 
@@ -100,9 +102,14 @@
             <tr>
                 <td id="blocklyArea" style="width: 60%">
                 </td>
-                <td id="editorArea" style="width: 40%">
-                    <textarea id="ruletext" style="width: 100%; height: 100%">
-                    </textarea>
+                <td id="editorArea" style="width: 40%; height:100%">
+                    <div id="editorAreaDiv" style="width: 100%; height: 50%">
+                        <textarea id="ruletext">
+                        </textarea>
+                    </div>
+                    <div id="htmlPreviewDiv" style="width: 100%; height:50%; background-color: #99c0ff; font-size: 20px;">
+
+                    </div>
                 </td>
             </tr>
         </table>
@@ -130,6 +137,7 @@
             <category name="Varia">
                 <block type="eval"></block>
                 <block type="singleComment"></block>
+                <block type="lists_create_with"></block>
             </category>
 
             <category name="Variabelen">
@@ -138,7 +146,11 @@
             </category>
 
             <category name="HTML"> <!-- todo: rename to layout or something similar -->
+                <block type="html_start"></block>
                 <block type="html_bold"></block>
+                <block type="html_italic"></block>
+                <block type="html_underline"></block>
+                <block type="html_break"></block>
             </category>
 
             <!--<block type="procedures_defnoreturn"></block>-->
@@ -179,6 +191,19 @@
             }
             setInterval(generateCode, 100);
 
+            function generatePreview(){
+                var code = Blockly.Dcg.workspaceToCode(workspace);
+                // get the CODE that is HTML.
+                var result = code.match("<html>.*<\\/html>")[0]; // first assume there is only one matching element.
+                result = result.substring("<html>".length,result.length - "</html>".length);
+                var previewDiv = document.getElementById("htmlPreviewDiv");
+                previewDiv.innerHTML = result;
+//                var parser = new DOMParser();
+//                console.log(result);
+//                var doc = parser.parseFromString(result,"text/html");
+            }
+            setInterval(generatePreview, 100);
+
 
             function saveWorkspace(){
                 var xml = Blockly.Xml.workspaceToDom(workspace);
@@ -192,7 +217,6 @@
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
             }
-
         </script>
 
     </body>
