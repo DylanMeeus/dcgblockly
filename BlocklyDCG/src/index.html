@@ -147,11 +147,15 @@
 
             <category name="HTML"> <!-- todo: rename to layout or something similar -->
                 <block type="html_start"></block>
+                <block type="html_header"></block>
                 <block type="html_bold"></block>
                 <block type="html_italic"></block>
                 <block type="html_underline"></block>
                 <block type="html_break"></block>
+                <block type="html_list_numbered"></block>
+                <block type="html_list_unnumbered"></block>
             </category>
+
         </xml>
 
 
@@ -192,13 +196,12 @@
             function generatePreview(){
                 var code = Blockly.Dcg.workspaceToCode(workspace);
                 // get the CODE that is HTML.
-                var result = code.match("<html>.*<\\/html>")[0]; // first assume there is only one matching element.
+                var result = code.match("<html>.*<\\/html>"); // first assume there is only one matching element.
+                if(result == null) return; // just return because there is no HTML yet.
+                result = result[0]
                 result = result.substring("<html>".length,result.length - "</html>".length);
                 var previewDiv = document.getElementById("htmlPreviewDiv");
                 previewDiv.innerHTML = result;
-//                var parser = new DOMParser();
-//                console.log(result);
-//                var doc = parser.parseFromString(result,"text/html");
             }
             setInterval(generatePreview, 100);
 
