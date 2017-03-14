@@ -841,3 +841,88 @@ Blockly.Blocks['lists_split'] = {
     this.updateType_(xmlElement.getAttribute('mode'));
   }
 };
+
+
+/**
+ * Block for the 'in'-operator.
+ * @type {{init: Blockly.Blocks.variable_in_list.init, onchange: Blockly.Blocks.variable_in_list.onchange}}
+ */
+Blockly.Blocks['variable_in_list'] = {
+    /**
+     * Block for comparison operator.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setHelpUrl(Blockly.Msg.LOGIC_COMPARE_HELPURL);
+        this.setColour(Blockly.Blocks.lists.HUE);
+
+        this.setOutput(true, 'Boolean');
+        this.appendValueInput('A');
+        this.appendDummyInput().appendField("in lijst")
+        this.appendValueInput('B')
+        this.setInputsInline(true);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        this.setTooltip("Komt dit element voor in de lijst");
+        //this.prevBlocks_ = [null, null];
+        this.setNextStatement(false); // Because this block should only be put inside an if-block. The if-block has the connection to next.
+    },
+
+    /**
+     * This is called for every change to the workspace.
+     * Here I could verify that one of the parts of the blocks is a list, and the other a variable.
+     * @param e
+     */
+    onchange: function(e) {
+        var blockA = this.getInputTargetBlock('A');
+        var blockB = this.getInputTargetBlock('B');
+
+        // todo: write matching logic, and alerts.
+
+        this.prevBlocks_[0] = blockA;
+        this.prevBlocks_[1] = blockB;
+    }
+};
+
+/**
+ * Block for the ~ operator.
+ * @type {{init: Blockly.Blocks.variable_in_list.init, onchange: Blockly.Blocks.variable_in_list.onchange}}
+ */
+Blockly.Blocks['list_contains_variable'] = {
+    /**
+     * Block for comparison operator.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setHelpUrl(Blockly.Msg.LOGIC_COMPARE_HELPURL);
+        this.setColour(Blockly.Blocks.lists.HUE);
+
+        this.setOutput(true, 'Boolean');
+        this.appendDummyInput().appendField("Lijst ")
+        this.appendValueInput('A');
+        this.appendDummyInput().appendField("heeft element")
+        this.appendValueInput('B')
+        this.setInputsInline(true);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        this.setTooltip("Komt dit element voor in de lijst");
+        //this.prevBlocks_ = [null, null];
+        this.setNextStatement(false); // Because this block should only be put inside an if-block. The if-block has the connection to next.
+    },
+
+    /**
+     * This is called for every change to the workspace.
+     * Here I could verify that one of the parts of the blocks is a list, and the other a variable.
+     * @param e
+     */
+    onchange: function(e) {
+        var blockA = this.getInputTargetBlock('A');
+        var blockB = this.getInputTargetBlock('B');
+
+        // todo: write matching logic, and alerts.
+
+        this.prevBlocks_[0] = blockA;
+        this.prevBlocks_[1] = blockB;
+    }
+};
+

@@ -353,3 +353,38 @@ Blockly.Dcg['lists_split'] = function(block) {
   }
   return [code, Blockly.Dcg.ORDER_FUNCTION_CALL];
 };
+
+
+/**
+ * Generator for the 'in'-operator.
+ * @param block
+ * @returns {*[]}
+ */
+Blockly.Dcg['variable_in_list'] = function(block) {
+  // Block for splitting text into a list, or joining a list into text.
+    var argument0 = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
+    var argument1 = Blockly.Dcg.valueToCode(block, 'B', Blockly.Dcg.ORDER_NONE);
+
+    var code = argument0 + ' in ' + argument1;
+
+    return [code,Blockly.Dcg.ORDER_NONE];
+};
+
+
+/**
+ * Generator for the '~'-operator.
+ * @param block
+ * @returns {*[]}
+ */
+Blockly.Dcg['list_contains_variable'] = function(block) {
+  // Block for splitting text into a list, or joining a list into text.
+    var argument0 = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
+    var argument1 = Blockly.Dcg.valueToCode(block, 'B', Blockly.Dcg.ORDER_NONE);
+
+    var code = argument0 + ' ~ ' + argument1;
+
+    return [code,Blockly.Dcg.ORDER_NONE];
+};
+
+
+
