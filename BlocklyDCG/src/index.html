@@ -125,14 +125,13 @@
         <xml id="toolbox" style="display: none">
 
             <category name="Logica">
-                <block type="controls_if"></block>
+                <block type="controls_if"></block> <!-- technically the controls are not 'Logic', but rather they are control-flow. -->
+                <block type="controls_switch"></block>
+                <block type="controls_switch_case"></block> <!-- single switch case block -->
                 <block type="logic_compare"></block>
                 <block type="logic_operation"></block>
             </category>
-            <!--<block type="logic_compare"></block>-->
-            <!--<block type="controls_repeat_ext"></block>-->
-            <!-- <block type="math_number"></block> -->
-            <!--<block type="math_arithmetic"></block>-->
+
             <category name="Text">
                 <block type="text"></block>
                 <block type="text_append"></block>
@@ -143,7 +142,6 @@
             <category name="Varia">
                 <block type="eval"></block>
                 <block type="singleComment"></block>
-                <block type="lists_create_with"></block>
             </category>
 
             <category name="Variabelen">

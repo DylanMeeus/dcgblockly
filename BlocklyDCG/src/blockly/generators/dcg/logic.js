@@ -127,3 +127,47 @@ Blockly.Dcg['logic_ternary'] = function(block) {
   var code = value_then + ' if ' + value_if + ' else ' + value_else;
   return [code, Blockly.Dcg.ORDER_CONDITIONAL];
 };
+
+
+/**
+ * Generator for the general switch-block.
+ * @param block
+ * @returns {*[]}
+ */
+Blockly.Dcg['controls_switch'] = function(block) {
+
+    var elements = new Array(block.itemCount_);
+    for (var i = 0; i < block.itemCount_; i++) {
+        elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
+                Blockly.Dcg.ORDER_NONE) || 'None';
+    }
+    var liWrappedElements = elements.map(x => x = "<li>" + x + "</li>");
+
+    var variable = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
+
+
+    // var code = '<ul>' + liWrappedElements.join('') + '</ul>';
+    var code = "case " + variable;
+    return code;
+};
+
+
+Blockly.Dcg['controls_switch_case'] = function(block) {
+
+    var elements = new Array(block.itemCount_);
+    for (var i = 0; i < block.itemCount_; i++) {
+        elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
+                Blockly.Dcg.ORDER_NONE) || 'None';
+    }
+    var liWrappedElements = elements.map(x => x = "<li>" + x + "</li>");
+
+    var variable = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
+
+
+    // var code = '<ul>' + liWrappedElements.join('') + '</ul>';
+    var code = "case " + variable;
+    return code;
+};
+
+
+

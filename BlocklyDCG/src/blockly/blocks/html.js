@@ -73,8 +73,9 @@ Blockly.Blocks['html_start'] = {
         this.setMutator(new Blockly.Mutator(['html_block']));
         this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
     },
+
     /**
-     * Create XML to represent list inputs.
+     * Create XML to represent the HTML-elements contained in this HTML block..
      * @return {!Element} XML storage element.
      * @this Blockly.Block
      */
