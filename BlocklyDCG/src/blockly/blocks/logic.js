@@ -558,7 +558,9 @@ Blockly.Blocks['controls_switch_case'] = {
             .appendField("");
         this.setInputsInline(true);
         this.appendValueInput("VAR"); // input variable
-        this.appendValueInput("OUT").appendField("Dan.."); // the output that needs to happen
+        // Actually a statement should come here.. But we will use some magic to format this correctly.
+        // This does assume that only 'print' statements can be the result of a switch statement in DCG.
+        this.appendValueInput("OUT").appendField("Toon dan.."); // the output that needs to happen
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setTooltip(Blockly.Msg.CONTROLS_IF_ELSE_TOOLTIP);
@@ -605,19 +607,13 @@ Blockly.Blocks['controls_switch'] = {
         this.setColour(Blockly.Blocks.logic.HUE);
         this.setInputsInline(true);
         this.appendValueInput('A')
-            .setCheck('Boolean')
             .appendField("Switch");
-        // Initial case block.
-        this.appendStatementInput('DO0')
-            .appendField("=")
         this.setPreviousStatement(true);
         this.setNextStatement(true);
         this.setMutator(new Blockly.Mutator(['switch_container_case'])); // this is not the container that is being added, it is a _block_ that can appear inside the container
         // Assign 'this' to a variable for use in the tooltip closure below.
         var thisBlock = this;
         this.setTooltip("DCG case statement.");
-        this.elseifCount_ = 0;
-        this.elseCount_ = 0;
         this.itemCount_ = 0;
     },
 
@@ -658,17 +654,12 @@ Blockly.Blocks['controls_switch'] = {
     decompose: function(workspace) {
         var containerBlock = workspace.newBlock('case_container');
         containerBlock.initSvg();
-        var connection = containerBlock.nextConnection;
-        for (var i = 1; i <= this.elseifCount_; i++) {
-            var elseifBlock = workspace.newBlock('controls_if_elseif');
-            elseifBlock.initSvg();
-            connection.connect(elseifBlock.previousConnection);
-            connection = elseifBlock.nextConnection;
-        }
-        if (this.elseCount_) {
-            var elseBlock = workspace.newBlock('controls_if_else');
-            elseBlock.initSvg();
-            connection.connect(elseBlock.previousConnection);
+        var connection = containerBlock.getInput('STACK').connection;
+        for (var i = 0; i < this.itemCount_; i++) {
+            var itemBlock = workspace.newBlock('switch_container_case');
+            itemBlock.initSvg();
+            connection.connect(itemBlock.previousConnection);
+            connection = itemBlock.nextConnection;
         }
         return containerBlock;
     },
@@ -678,23 +669,27 @@ Blockly.Blocks['controls_switch'] = {
      * @this Blockly.Block
      */
     compose: function(containerBlock) {
-        var clauseBlock = containerBlock.nextConnection.targetBlock();
+        var itemBlock = containerBlock.getInputTargetBlock('STACK');
         // Count number of inputs.
-        this.elseifCount_ = 0;
-        this.elseCount_ = 0;
-        var valueConnections = [null];
-        var statementConnections = [null];
-        var elseStatementConnection = null;
-
-        this.itemCount_ = containerBlock.childBlocks_.length;
-
+        var connections = [];
+        while (itemBlock) {
+            connections.push(itemBlock.valueConnection_);
+            itemBlock = itemBlock.nextConnection &&
+                itemBlock.nextConnection.targetBlock();
+        }
+        // Disconnect any children that don't belong.
+        for (var i = 0; i < this.itemCount_; i++) {
+            var connection = this.getInput('ADD' + i).connection.targetConnection;
+            if (connection && connections.indexOf(connection) == -1) {
+                connection.disconnect();
+            }
+        }
+        this.itemCount_ = connections.length;
         this.updateShape_();
         // Reconnect any child blocks.
-        for (var i = 1; i <= this.elseifCount_; i++) {
-            Blockly.Mutator.reconnect(valueConnections[i], this, 'IF' + i);
-            Blockly.Mutator.reconnect(statementConnections[i], this, 'DO' + i);
+        for (var i = 0; i < this.itemCount_; i++) {
+            Blockly.Mutator.reconnect(connections[i], this, 'ADD' + i);
         }
-        Blockly.Mutator.reconnect(elseStatementConnection, this, 'ELSE');
     },
     /**
      * Store pointers to any connected child blocks.
@@ -718,28 +713,24 @@ Blockly.Blocks['controls_switch'] = {
      * @this Blockly.Block
      */
     updateShape_: function() {
-        // Delete everything.
-        console.log(this.itemCount_);
-        if (this.getInput('ELSE')) {
-            this.removeInput('ELSE');
+        if (this.itemCount_ && this.getInput('EMPTY')) {
+            this.removeInput('EMPTY');
+        } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
+            this.appendDummyInput('EMPTY')
+                .appendField("");
         }
-        var i = 1;
-        while (this.getInput('IF' + i)) {
-            this.removeInput('IF' + i);
-            this.removeInput('DO' + i);
+        // Add new inputs.
+        for (var i = 0; i < this.itemCount_; i++) {
+            if (!this.getInput('ADD' + i)) {
+                var input = this.appendStatementInput('ADD' + i);
+                input.appendField("=");
+
+            }
+        }
+        // Remove deleted inputs.
+        while (this.getInput('ADD' + i)) {
+            this.removeInput('ADD' + i);
             i++;
-        }
-        // Rebuild block.
-        for (var i = 1; i <= this.elseifCount_; i++) {
-            this.appendValueInput('IF' + i)
-                .setCheck('Boolean')
-                .appendField(Blockly.Msg.CONTROLS_IF_MSG_ELSEIF);
-            this.appendStatementInput('DO' + i)
-                .appendField(Blockly.Msg.CONTROLS_IF_MSG_THEN);
-        }
-        if (this.elseCount_) {
-            this.appendStatementInput('ELSE')
-                .appendField(Blockly.Msg.CONTROLS_IF_MSG_ELSE);
         }
     }
 };

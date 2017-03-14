@@ -138,34 +138,36 @@ Blockly.Dcg['controls_switch'] = function(block) {
 
     var elements = new Array(block.itemCount_);
     for (var i = 0; i < block.itemCount_; i++) {
-        elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
+        elements[i] = Blockly.Dcg.statementToCode(block, 'ADD' + i,
                 Blockly.Dcg.ORDER_NONE) || 'None';
+        console.log(elements[i]);
     }
-    var liWrappedElements = elements.map(x => x = "<li>" + x + "</li>");
 
     var variable = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
 
-
+    console.log(variable);
     // var code = '<ul>' + liWrappedElements.join('') + '</ul>';
-    var code = "case " + variable;
+    var code = "case " + variable + "\n";
+
+    elements.forEach(x => code += x + "\n");
+
     return code;
 };
 
 
+
+
+
+/**
+ * Block for individual case.
+ * @param block
+ * @returns {string}
+ */
 Blockly.Dcg['controls_switch_case'] = function(block) {
-
-    var elements = new Array(block.itemCount_);
-    for (var i = 0; i < block.itemCount_; i++) {
-        elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
-                Blockly.Dcg.ORDER_NONE) || 'None';
-    }
-    var liWrappedElements = elements.map(x => x = "<li>" + x + "</li>");
-
-    var variable = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
-
-
-    // var code = '<ul>' + liWrappedElements.join('') + '</ul>';
-    var code = "case " + variable;
+    var comparator = Blockly.Dcg.valueToCode(block, 'VAR', Blockly.Dcg.ORDER_NONE);
+    var output = Blockly.Dcg.valueToCode(block, 'OUT', Blockly.Dcg.ORDER_NONE);
+    output = output.substr(1,output.length-2);
+    var code = "= " + comparator + "| " + output + "|";
     return code;
 };
 
