@@ -3,7 +3,7 @@ Blockly.Blocks['singleComment'] = {
         this.appendValueInput('VALUE')
             .setCheck('String')
             .appendField('commentaar: ');
-        this.setColour("#6b6767");
+        this.setColour("#888888");
         this.setTooltip('Commentaar, wordt niet geinterpreteerd in de code.');
         this.setHelpUrl('wiki');
         this.setNextStatement(true);
