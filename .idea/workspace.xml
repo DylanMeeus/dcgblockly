@@ -56,21 +56,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="lists.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/lists.js">
+      <file leaf-file-name="html.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/html.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="359">
-              <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
+            <state relative-caret-position="252">
+              <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="21" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="logic.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/logic.js">
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="34" column="35" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="35" />
+            <state relative-caret-position="379">
+              <caret line="160" column="39" selection-start-line="160" selection-start-column="39" selection-end-line="160" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -79,36 +79,29 @@
       <file leaf-file-name="text.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/text.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="307">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="2567">
+              <caret line="839" column="45" selection-start-line="839" selection-start-column="45" selection-end-line="839" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="variables.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/variables.js">
+      <file leaf-file-name="html.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/html.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="34" column="39" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="39" />
+            <state relative-caret-position="84">
+              <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="toolbox.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/js/toolbox.js">
+      <file leaf-file-name="text.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/text.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="29" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="29" />
-              <folding>
-                <marker date="1489581082370" expanded="true" signature="1109:1119" ph="..." />
-                <marker date="1489581082370" expanded="true" signature="1109:1124" ph="..." />
-                <marker date="1489581082370" expanded="true" signature="1126:1132" ph="..." />
-                <marker date="1489581082370" expanded="true" signature="1126:1155" ph="..." />
-                <marker date="1489581082370" expanded="true" signature="1126:1174" ph="..." />
-                <marker date="1489581082370" expanded="true" signature="1159:1165" ph="•" />
-              </folding>
+            <state relative-caret-position="531">
+              <caret line="265" column="48" selection-start-line="265" selection-start-column="48" selection-end-line="265" selection-end-column="48" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,7 +119,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/build.py" />
-        <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/text.js" />
         <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg.js" />
         <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/variables.js" />
         <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/eval.js" />
@@ -144,10 +136,11 @@
         <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/logic.js" />
         <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/variables.js" />
         <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/accessible/toolbox-modal.component.js" />
-        <option value="$PROJECT_DIR$/BlocklyDCG/src/index.html" />
-        <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/text.js" />
         <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/lists.js" />
         <option value="$PROJECT_DIR$/BlocklyDCG/src/js/toolbox.js" />
+        <option value="$PROJECT_DIR$/BlocklyDCG/src/index.html" />
+        <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/text.js" />
+        <option value="$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/text.js" />
       </list>
     </option>
   </component>
@@ -305,6 +298,62 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="generators" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dcgblockly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dcgblockly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BlocklyDCG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blockly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="generators" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dcg" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dcgblockly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dcgblockly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BlocklyDCG" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="blockly" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="blocks" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -318,7 +367,7 @@
   <component name="PropertiesComponent">
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="editor.config.accepted" value="true" />
-    <property name="SearchEverywhereHistoryKey" value="variable&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/variables.js&#10;logic&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/logic.js&#10;commen&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/comment.js&#10;eval&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/eval.js&#10;variables&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/variables.js&#10;html&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/html.js&#10;text.js&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/text.js&#10;math&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/generators/dcg/math.js&#10;index&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/index.html&#10;index.ht&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/index.html" />
+    <property name="SearchEverywhereHistoryKey" value="index.html&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/index.html&#10;variable&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/variables.js&#10;logic&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/logic.js&#10;commen&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/comment.js&#10;eval&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/eval.js&#10;variables&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/variables.js&#10;html&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/html.js&#10;text.js&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/blocks/text.js&#10;math&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/blockly/generators/dcg/math.js&#10;index&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/index.html&#10;index.ht&#9;FILE&#9;file://C:/Development/gitrepos/dcgblockly/BlocklyDCG/src/index.html" />
     <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
     <property name="JavaScriptPreferStrict" value="false" />
     <property name="JavaScriptWeakerCompletionTypeGuess" value="true" />
@@ -472,12 +521,12 @@
       <workItem from="1489061099845" duration="3213000" />
       <workItem from="1489066461634" duration="32000" />
       <workItem from="1489152011376" duration="9330000" />
-      <workItem from="1489395549710" duration="59735000" />
+      <workItem from="1489395549710" duration="62618000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115052000" />
+    <option name="totallyTimeSpent" value="117935000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="56" y="-8" width="1872" height="1096" extended-state="6" />
@@ -777,14 +826,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/text.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="224" column="30" selection-start-line="224" selection-start-column="30" selection-end-line="224" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/core/mutator.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3276">
@@ -805,14 +846,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
           <caret line="385" column="30" selection-start-line="385" selection-start-column="30" selection-end-line="385" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/html.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-15">
-          <caret line="72" column="31" selection-start-line="72" selection-start-column="31" selection-end-line="72" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -866,14 +899,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/html.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/accessible/toolbox-modal.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="363">
@@ -898,38 +923,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="470">
-          <caret line="54" column="34" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/lists.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="359">
-          <caret line="34" column="29" selection-start-line="34" selection-start-column="29" selection-end-line="34" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/variables.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="34" column="39" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/text.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/logic.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -938,10 +931,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/lists.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="212">
+          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/variables.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="34" column="39" selection-start-line="34" selection-start-column="33" selection-end-line="34" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/js/toolbox.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="8" column="29" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="29" />
+        <state relative-caret-position="210">
+          <caret line="10" column="33" selection-start-line="10" selection-start-column="33" selection-end-line="10" selection-end-column="33" />
           <folding>
             <marker date="1489581082370" expanded="true" signature="1109:1119" ph="..." />
             <marker date="1489581082370" expanded="true" signature="1109:1124" ph="..." />
@@ -950,6 +959,46 @@
             <marker date="1489581082370" expanded="true" signature="1126:1174" ph="..." />
             <marker date="1489581082370" expanded="true" signature="1159:1165" ph="•" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="379">
+          <caret line="160" column="39" selection-start-line="160" selection-start-column="39" selection-end-line="160" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/html.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="21" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/text.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2567">
+          <caret line="839" column="45" selection-start-line="839" selection-start-column="45" selection-end-line="839" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/html.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/text.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="531">
+          <caret line="265" column="48" selection-start-line="265" selection-start-column="48" selection-end-line="265" selection-end-column="48" />
+          <folding />
         </state>
       </provider>
     </entry>

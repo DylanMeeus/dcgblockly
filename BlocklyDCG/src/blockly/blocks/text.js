@@ -688,3 +688,172 @@ Blockly.Blocks['text_prompt'] = {
   mutationToDom: Blockly.Blocks['text_prompt_ext'].mutationToDom,
   domToMutation: Blockly.Blocks['text_prompt_ext'].domToMutation
 };
+
+
+/**
+ * Container for the elements in the mutator.
+ */
+Blockly.Blocks['text_blocks_container'] = {
+    /**
+     * Mutator block for list container.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setColour(Blockly.Blocks.texts.HUE);
+        this.appendDummyInput()
+            .appendField("Layout-element");
+        this.appendStatementInput('STACK');
+        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP);
+        this.contextMenu = false;
+    }
+};
+
+/**
+ * Single text-element, for use in the mutator container.
+ * @type {{init: Blockly.Blocks.html_block.init}}
+ */
+Blockly.Blocks['text_block'] = {
+    /**
+     * Mutator block for adding items.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setColour(Blockly.Blocks.texts.HUE);
+        this.appendDummyInput()
+            .appendField("tekst");
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP);
+        this.contextMenu = false;
+    }
+};
+
+
+/**
+ * Code for a multi-text block. This can be used to split long pieces of text into multiple pieces, and add variables if necessary.
+ * @type {{init: Blockly.Blocks.lists_create_with.init, mutationToDom: Blockly.Blocks.lists_create_with.mutationToDom, domToMutation: Blockly.Blocks.lists_create_with.domToMutation, decompose: Blockly.Blocks.lists_create_with.decompose, compose: Blockly.Blocks.lists_create_with.compose, saveConnections: Blockly.Blocks.lists_create_with.saveConnections, updateShape_: Blockly.Blocks.lists_create_with.updateShape_}}
+ */
+Blockly.Blocks['multi_text'] = {
+    /**
+     * Block for creating a list with any number of elements of any type.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setHelpUrl(Blockly.Msg.LISTS_CREATE_WITH_HELPURL);
+        this.setColour(Blockly.Blocks.texts.HUE);
+        this.itemCount_ = 3;
+        this.updateShape_();
+        this.setOutput(true, 'Array');
+        this.setMutator(new Blockly.Mutator(['text_block']));
+        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
+    },
+
+    /**
+     * Create XML to represent the HTML-elements contained in this HTML block..
+     * @return {!Element} XML storage element.
+     * @this Blockly.Block
+     */
+    mutationToDom: function() {
+        var container = document.createElement('mutation');
+        container.setAttribute('items', this.itemCount_);
+        return container;
+    },
+    /**
+     * Parse XML to restore the list inputs.
+     * @param {!Element} xmlElement XML storage element.
+     * @this Blockly.Block
+     */
+    domToMutation: function(xmlElement) {
+        this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
+        this.updateShape_();
+    },
+    /**
+     * Populate the mutator's dialog with this block's components.
+     * @param {!Blockly.Workspace} workspace Mutator's workspace.
+     * @return {!Blockly.Block} Root block in mutator.
+     * @this Blockly.Block
+     */
+    decompose: function(workspace) {
+        var containerBlock = workspace.newBlock('text_blocks_container');
+        containerBlock.initSvg();
+        var connection = containerBlock.getInput('STACK').connection;
+        for (var i = 0; i < this.itemCount_; i++) {
+            var itemBlock = workspace.newBlock('text_block');
+            itemBlock.initSvg();
+            connection.connect(itemBlock.previousConnection);
+            connection = itemBlock.nextConnection;
+        }
+        return containerBlock;
+    },
+    /**
+     * Reconfigure this block based on the mutator dialog's components.
+     * @param {!Blockly.Block} containerBlock Root block in mutator.
+     * @this Blockly.Block
+     */
+    compose: function(containerBlock) {
+        var itemBlock = containerBlock.getInputTargetBlock('STACK');
+        // Count number of inputs.
+        var connections = [];
+        while (itemBlock) {
+            connections.push(itemBlock.valueConnection_);
+            itemBlock = itemBlock.nextConnection &&
+                itemBlock.nextConnection.targetBlock();
+        }
+        // Disconnect any children that don't belong.
+        for (var i = 0; i < this.itemCount_; i++) {
+            var connection = this.getInput('ADD' + i).connection.targetConnection;
+            if (connection && connections.indexOf(connection) == -1) {
+                connection.disconnect();
+            }
+        }
+        this.itemCount_ = connections.length;
+        this.updateShape_();
+        // Reconnect any child blocks.
+        for (var i = 0; i < this.itemCount_; i++) {
+            Blockly.Mutator.reconnect(connections[i], this, 'ADD' + i);
+        }
+    },
+    /**
+     * Store pointers to any connected child blocks.
+     * @param {!Blockly.Block} containerBlock Root block in mutator.
+     * @this Blockly.Block
+     */
+    saveConnections: function(containerBlock) {
+        var itemBlock = containerBlock.getInputTargetBlock('STACK');
+        var i = 0;
+        while (itemBlock) {
+            var input = this.getInput('ADD' + i);
+            itemBlock.valueConnection_ = input && input.connection.targetConnection;
+            i++;
+            itemBlock = itemBlock.nextConnection &&
+                itemBlock.nextConnection.targetBlock();
+        }
+    },
+    /**
+     * Modify this block to have the correct number of inputs.
+     * @private
+     * @this Blockly.Block
+     */
+    updateShape_: function() {
+        if (this.itemCount_ && this.getInput('EMPTY')) {
+            this.removeInput('EMPTY');
+        } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
+            this.appendDummyInput('EMPTY')
+                .appendField("Voeg een tekst-element toe.");
+        }
+        // Add new inputs.
+        for (var i = 0; i < this.itemCount_; i++) {
+            if (!this.getInput('ADD' + i)) {
+                var input = this.appendValueInput('ADD' + i);
+                if (i == 0) {
+                    input.appendField("Gecombineerde tekst");
+                }
+            }
+        }
+        // Remove deleted inputs.
+        while (this.getInput('ADD' + i)) {
+            this.removeInput('ADD' + i);
+            i++;
+        }
+    }
+};

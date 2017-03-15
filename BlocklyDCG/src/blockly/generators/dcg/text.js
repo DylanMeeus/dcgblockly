@@ -252,3 +252,20 @@ Blockly.Dcg['text_prompt_ext'] = function(block) {
 };
 
 Blockly.Dcg['text_prompt'] = Blockly.Dcg['text_prompt_ext'];
+
+
+/**
+ * Generator for the multi-line text block.
+ * @param block
+ * @returns {*[]}
+ */
+Blockly.Dcg['multi_text'] = function(block) {
+    // Create a list with any number of elements of any type.
+    var elements = new Array(block.itemCount_);
+    for (var i = 0; i < block.itemCount_; i++) {
+        elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
+                Blockly.Dcg.ORDER_NONE) || 'None';
+    }
+    var code = '|' + elements.join(' ') + '|';
+    return [code, Blockly.Dcg.ORDER_ATOMIC];
+};
