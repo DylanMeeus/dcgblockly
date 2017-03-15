@@ -33,7 +33,7 @@ blocklyApp.ToolboxModalComponent = ng.core.Component({
       <div id="toolboxModal" class="blocklyModal" role="alertdialog"
            (click)="$event.stopPropagation()" tabindex="-1"
            aria-labelledby="toolboxModalHeading">
-        <h3 id="toolboxModalHeading">{{'SELECT_A_BLOCK'|translate}}</h3>
+        <h3 id="toolboxModalHeading"> <!--{{'SELECT_A_BLOCK'|translate}} --> test</h3>
 
         <div *ngFor="#toolboxCategory of toolboxCategories; #categoryIndex=index">
           <h4 *ngIf="toolboxCategory.categoryName">{{toolboxCategory.categoryName}}</h4>
