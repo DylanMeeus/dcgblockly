@@ -25,3 +25,4 @@
 'use strict';
 
 goog.provide('Blockly.Blocks');
+

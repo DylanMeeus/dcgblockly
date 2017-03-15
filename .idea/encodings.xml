@@ -10,6 +10,7 @@
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/text.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/variables.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/build.py" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/core/blocks.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/core/field_variable.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/comment.js" charset="UTF-8" />

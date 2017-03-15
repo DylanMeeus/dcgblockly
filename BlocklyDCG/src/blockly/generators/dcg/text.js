@@ -265,7 +265,17 @@ Blockly.Dcg['multi_text'] = function(block) {
     for (var i = 0; i < block.itemCount_; i++) {
         elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
                 Blockly.Dcg.ORDER_NONE) || 'None';
+
     }
-    var code = '|' + elements.join(' ') + '|';
+    var code = '|' + elements.map(x => x.charAt(0) === "'" ?  x.substr(1,x.length-2) : x).join(' ') + '|'; // put the fields between pipes, and remove the ' marks from the text output. (from text blocks)
     return [code, Blockly.Dcg.ORDER_ATOMIC];
+};
+
+/**
+ * Generator for a newline character (\n)
+ * @param block
+ * @returns {*[]}
+ */
+Blockly.Dcg['text_newline'] = function(block) {
+    return ['\\n', Blockly.Dcg.ORDER_ATOMIC];
 };

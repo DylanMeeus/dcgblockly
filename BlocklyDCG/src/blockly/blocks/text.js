@@ -31,7 +31,7 @@ goog.require('Blockly.Blocks');
 /**
  * Common HSV hue for all blocks in this category.
  */
-Blockly.Blocks.texts.HUE = "#1FCB4A";
+Blockly.Blocks.texts.HUE = "#398564";
 
 Blockly.Blocks['text'] = {
   /**
@@ -855,5 +855,25 @@ Blockly.Blocks['multi_text'] = {
             this.removeInput('ADD' + i);
             i++;
         }
+    }
+};
+
+
+
+/**
+ * Represents a newline \n in DCG text
+ */
+Blockly.Blocks['text_newline'] = {
+    /**
+     * Mutator block for list container.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setColour(Blockly.Blocks.texts.HUE);
+        this.appendDummyInput()
+            .appendField("nieuwe lijn");
+        this.setTooltip("Wat volgt wordt op een nieuwe lijn weergeven.");
+        this.setOutput(true)
+        this.contextMenu = false;
     }
 };
