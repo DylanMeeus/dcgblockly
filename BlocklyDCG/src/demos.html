@@ -1,4 +1,16 @@
 <!doctype html>
+
+
+<!---
+
+
+
+This page is just made to show some demos of blockly in action, without having to recreate everything from scratch.
+In addition it can be used to test changes to the code. Changing colour combinations of the blocks, changing the type-checks etc.
+
+
+
+-->
 <html class="no-js" lang="">
     <head>
         <meta charset="utf-8">
@@ -103,11 +115,13 @@
         <table>
             <tr>
                 <td>
-                    <h1> DCG Editor met <a href="https://developers.google.com/blockly/"> BlockLy </a> PoC </h1>
+                    <h1> DEMO PAGINA </a> PoC </h1>
                     <a href="dcgtoblockly.html">DCG to blockly</a>
-                    <a href="demos.html">Demos</a>
+                    <a href="index.html">Blockly to DCG</a>
                 <button onclick="saveWorkspace()"> Save </button>
                 <button onclick="loadFromXML()"> Load </button>
+                <button onclick="loadDemo('allBlocks')"> All blocks </button>
+                <button onclick="loadDemo('htmlDemo1')"> HTML Demo</button>
                 </td>
                 <td>
                     <label>rule <input type="text" id="rulename" value="testrule"></label>
@@ -234,6 +248,19 @@
 
             function loadFromXML(){
                 var xml = prompt("xml");
+                var dom = Blockly.Xml.textToDom(xml);
+                Blockly.mainWorkspace.clear();
+                Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
+            }
+
+            function loadDemo(demo){
+                var xml = "";
+                if(demo === "allBlocks"){
+                    xml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="eval" id="2v*J@QNrE,iW:JqDIFE+" x="221" y="97"><value name="VALUE"><block type="text" id="0]xhnG$DAoM$!6;nFOU="><field name="TEXT">people</field></block></value><next><block type="singleComment" id="`s{{H|n0%0R:`I7%9nIx"><value name="VALUE"><block type="text" id="CD.C2mAatgaIxKI._x:n"><field name="TEXT">List of some people</field></block></value><next><block type="variables_set" id="f[N(a5+apu{BRV8PZs|C"><field name="VAR">Names</field><value name="VALUE"><block type="lists_create_with" id="bT5Z%*C^IaCqEcIvg+z+"><mutation items="3"></mutation><value name="ADD0"><block type="text" id="0.!W~uQAmXwWgaBdL8i^"><field name="TEXT">Feynman</field></block></value><value name="ADD1"><block type="text" id="Qeias@+wZ!|mxs+AV3AG"><field name="TEXT">Turing</field></block></value><value name="ADD2"><block type="text" id="(tQ.dXNr?~.psza1VyDW"><field name="TEXT">Von Neumann</field></block></value></block></value><next><block type="controls_if" id="J!2(L}P5`e:X9R9b+ID/"><mutation else="1"></mutation><value name="IF0"><block type="variable_in_list" id="JN6H`*fjmi,?3o.T3tri"><value name="A"><block type="text" id="e4qW(Of1`2wL#y%(M~m%"><field name="TEXT">Feynman</field></block></value><value name="B"><block type="variables_get" id="mO%aDL;BKWO;1%D[7~K?"><field name="VAR">Names</field></block></value></block></value><statement name="DO0"><block type="text_print" id="L)#r[$TzwlkFn_m@_Nvi"><value name="TEXT"><block type="text" id="@x|PSbLZXXp~VX0WxW)C"><field name="TEXT">Richard Feynman is in the list</field></block></value></block></statement><statement name="ELSE"><block type="text_print" id="C;8GJ|[*u~wARl@Tc7P/"><value name="TEXT"><block type="html_start" id="1?9!b+0yyklhDW:~?H$f"><mutation items="2"></mutation><value name="ADD0"><block type="html_bold" id=");I$%{a%~l-ej}Yt~`im"><value name="TEXT"><block type="text" id="%T;9yG9c{wjOYpElg_0i"><field name="TEXT">Feynman</field></block></value></block></value><value name="ADD1"><block type="text" id="SF!40FJ*;Skd?`(V^SbK"><field name="TEXT">is not in the list.</field></block></value></block></value></block></statement></block></next></block></next></block></next></block></xml>'
+                } else if (demo === "htmlDemo1"){
+                    xml = '<xml xmlns="http://www.w3.org/1999/xhtml"><block type="html_start" id="G;~vs2*e{$Phbfm(S=rq" x="297" y="210"><mutation items="5"></mutation><value name="ADD0"><block type="html_header" id="s$^~3@R3R8mB:MDn:*os"><field name="LVL">1</field><value name="A"><block type="text" id=";IXIJ7K$8tAP:fb|f3|3"><field name="TEXT">Testen met lijstjes</field></block></value></block></value><value name="ADD1"><block type="html_header" id="eH24P5~0|3rWs[409)Vq"><field name="LVL">4</field><value name="A"><block type="text" id="33$)Bd7^|^nRO/MzAt+:"><field name="TEXT">Ongenummerde lijst</field></block></value></block></value><value name="ADD2"><block type="html_list_unnumbered" id="3OnQ.{IVhlBK/~aM{6~)"><mutation items="3"></mutation><value name="ADD0"><block type="html_bold" id="*#evVy{f{BAybr}NervB"><value name="TEXT"><block type="text" id="*sTVN3xHOT}F5Z:%yB3t"><field name="TEXT">Vet</field></block></value></block></value><value name="ADD1"><block type="html_italic" id="C3Jewck/1G7I=c9VOIsH"><value name="TEXT"><block type="text" id="RB?fa)$([lX7fTg#Rz;g"><field name="TEXT">Cursief</field></block></value></block></value><value name="ADD2"><block type="html_underline" id="u/y(yJp?EmfWVbU-Y?NB"><value name="TEXT"><block type="text" id="970LI,[`6=47ke5jv}_x"><field name="TEXT">Onderlijnt</field></block></value></block></value></block></value><value name="ADD3"><block type="html_header" id="On,vv0;.,DmNQ|K03*g9"><field name="LVL">4</field><value name="A"><block type="text" id="r]b:c(#S4xq2[eABeP2G"><field name="TEXT">Genummerde lijst</field></block></value></block></value><value name="ADD4"><block type="html_list_numbered" id="#Wn0.;{4TY6o{Loq.j5c"><mutation items="3"></mutation><value name="ADD0"><block type="text" id="^VU)2iwqq8Dp{W+jmE@r"><field name="TEXT">One</field></block></value><value name="ADD1"><block type="text" id="vF]}P5L-9-vB@6Mv[e$~"><field name="TEXT">Two</field></block></value><value name="ADD2"><block type="text" id="#@NWXp}Z|q.%Fk~fWX96"><field name="TEXT">Three</field></block></value></block></value></block></xml>'
+                }
+
                 var dom = Blockly.Xml.textToDom(xml);
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);

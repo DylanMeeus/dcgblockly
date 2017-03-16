@@ -4,12 +4,12 @@
 
 
 var colourMap = new Map();
-colourMap.set("Logica","#D73E68");
-colourMap.set("Text","#1FCB4A");
+colourMap.set("Logica","#d29985");
+colourMap.set("Text","#e35d6a");
 colourMap.set("Varia","silver");
-colourMap.set("Variabelen","#BC2EBC");
-colourMap.set("HTML", "#62A9FF");
-colourMap.set("Lijsten", "#8D18AB");
+colourMap.set("Variabelen","#c98276");
+colourMap.set("HTML", "#dbac98");
+colourMap.set("Lijsten", "#eec1ad");
 colourMap.set("default", "black"); // Default for in case no other colour is found
 /**
  * Give the items listen in the toolbox a custom colour, to make it easier to navigate.
