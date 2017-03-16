@@ -267,7 +267,7 @@ Blockly.Dcg['multi_text'] = function(block) {
                 Blockly.Dcg.ORDER_NONE) || 'None';
 
     }
-    var code = '|' + elements.map(x => x.charAt(0) === "'" ?  x.substr(1,x.length-2) : x).join(' ') + '|'; // put the fields between pipes, and remove the ' marks from the text output. (from text blocks)
+    var code = elements.map(x => x.charAt(0) === "'" ?  x.substr(1,x.length-2) : x).join(' '); // put the fields between pipes, and remove the ' marks from the text output. (from text blocks)
     return [code, Blockly.Dcg.ORDER_ATOMIC];
 };
 
