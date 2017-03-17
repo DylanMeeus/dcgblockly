@@ -297,10 +297,6 @@ Blockly.Blocks['controls_flow_statements'] = {
  * @type {{init: Blockly.Blocks.controls_switch_case.init}}
  */
 Blockly.Blocks['loops_for'] = {
-    /**
-     * Mutator block switch condition.
-     * @this Blockly.Block
-     */
     init: function() {
         this.setColour(Blockly.Blocks.loops.HUE);
         this.appendDummyInput()

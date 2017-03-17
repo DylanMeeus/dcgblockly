@@ -142,7 +142,6 @@ Blockly.FieldVariable.dropdownCreate = function() {
 
   this.renameVarItemIndex_ = variableList.length;
   variableList.push(Blockly.Msg.RENAME_VARIABLE);
-  variableList.push(Blockly.Msg.RENAME_VARIABLE);
 
   this.deleteVarItemIndex_ = variableList.length;
   variableList.push(Blockly.Msg.DELETE_VARIABLE.replace('%1', name));
