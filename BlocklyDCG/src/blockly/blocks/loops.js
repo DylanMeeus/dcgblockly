@@ -32,7 +32,7 @@ goog.require('Blockly.Blocks');
 /**
  * Common HSV hue for all blocks in this category.
  */
-Blockly.Blocks.loops.HUE = 120;
+Blockly.Blocks.loops.HUE = "#708090";
 
 Blockly.Blocks['controls_repeat_ext'] = {
   /**
@@ -289,4 +289,28 @@ Blockly.Blocks['controls_flow_statements'] = {
    */
   LOOP_TYPES: ['controls_repeat', 'controls_repeat_ext', 'controls_forEach',
       'controls_for', 'controls_whileUntil']
+};
+
+
+/**
+ * Block for the DCG-loop
+ * @type {{init: Blockly.Blocks.controls_switch_case.init}}
+ */
+Blockly.Blocks['loops_for'] = {
+    /**
+     * Mutator block switch condition.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setColour(Blockly.Blocks.loops.HUE);
+        this.appendDummyInput()
+            .appendField("");
+        this.setInputsInline(true);
+        this.appendValueInput("LST").appendField("Voor alle"); // input variable
+        this.appendValueInput("RLE").appendField("voer uit"); // the output that needs to happen
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setTooltip(Blockly.Msg.CONTROLS_IF_ELSE_TOOLTIP);
+        this.contextMenu = false;
+    }
 };

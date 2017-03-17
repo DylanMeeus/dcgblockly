@@ -8,7 +8,7 @@ goog.provide('Blockly.Blocks.html');
 
 goog.require('Blockly.Blocks');
 
-Blockly.Blocks.html.HUE = "#dbac98"; // define the colour for all HTML blocks.
+Blockly.Blocks.html.HUE = "#6e7f80"; // define the colour for all HTML blocks.
 
 
 // We need some elements for general HTML structure

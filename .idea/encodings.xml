@@ -7,6 +7,7 @@
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/html.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/lists.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/logic.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/loops.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/text.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/blocks/variables.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/build.py" charset="UTF-8" />
@@ -18,6 +19,7 @@
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/html.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/lists.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/logic.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/loops.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/text.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/blockly/generators/dcg/variables.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/BlocklyDCG/src/js/dcgblockly.js" charset="UTF-8" />

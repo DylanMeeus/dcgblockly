@@ -140,15 +140,12 @@ Blockly.Dcg['controls_switch'] = function(block) {
     for (var i = 0; i < block.itemCount_; i++) {
         elements[i] = Blockly.Dcg.statementToCode(block, 'ADD' + i,
                 Blockly.Dcg.ORDER_NONE) || 'None';
-        console.log(elements[i]);
     }
 
     var variable = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
 
     console.log(variable);
-    // var code = '<ul>' + liWrappedElements.join('') + '</ul>';
     var code = "case " + variable + "\n";
-
     elements.forEach(x => code += x + "\n");
 
     return code;
@@ -167,7 +164,7 @@ Blockly.Dcg['controls_switch_case'] = function(block) {
     var comparator = Blockly.Dcg.valueToCode(block, 'VAR', Blockly.Dcg.ORDER_NONE);
     var output = Blockly.Dcg.valueToCode(block, 'OUT', Blockly.Dcg.ORDER_NONE);
     output = output.substr(1,output.length-2);
-    var code = "= " + comparator + "| " + output + "|";
+    var code = "= " + comparator + "{ " + output + " }"; // { } as we can wrap another statement in here.
     return code;
 };
 
