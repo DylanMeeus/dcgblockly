@@ -45,6 +45,10 @@ goog.require('goog.math.Coordinate');
 goog.require('goog.userAgent');
 
 
+
+var loadAudio = false;
+var playAudio = false;
+
 /**
  * Class for a workspace.  This is an onscreen area with optional trashcan,
  * scrollbars, bubbles, and dragging.
@@ -1252,18 +1256,22 @@ Blockly.WorkspaceSvg.prototype.loadAudio_ = function(filenames, name) {
  * Preload all the audio files so that they play quickly when asked for.
  * @private
  */
+
+
 Blockly.WorkspaceSvg.prototype.preloadAudio_ = function() {
-  for (var name in this.SOUNDS_) {
-    var sound = this.SOUNDS_[name];
-    sound.volume = .01;
-    sound.play();
-    sound.pause();
-    // iOS can only process one sound at a time.  Trying to load more than one
-    // corrupts the earlier ones.  Just load one and leave the others uncached.
-    if (goog.userAgent.IPAD || goog.userAgent.IPHONE) {
-      break;
+    if(loadAudio){
+      for (var name in this.SOUNDS_) {
+        var sound = this.SOUNDS_[name];
+        sound.volume = .01;
+        sound.play();
+        sound.pause();
+        // iOS can only process one sound at a time.  Trying to load more than one
+        // corrupts the earlier ones.  Just load one and leave the others uncached.
+        if (goog.userAgent.IPAD || goog.userAgent.IPHONE) {
+          break;
+        }
+      }
     }
-  }
 };
 
 /**
@@ -1273,31 +1281,33 @@ Blockly.WorkspaceSvg.prototype.preloadAudio_ = function() {
  * @param {number=} opt_volume Volume of sound (0-1).
  */
 Blockly.WorkspaceSvg.prototype.playAudio = function(name, opt_volume) {
-  var sound = this.SOUNDS_[name];
-  if (sound) {
-    // Don't play one sound on top of another.
-    var now = new Date;
-    if (now - this.lastSound_ < Blockly.SOUND_LIMIT) {
-      return;
+    if(playAudio){
+        var sound = this.SOUNDS_[name];
+        if (sound) {
+            // Don't play one sound on top of another.
+            var now = new Date;
+            if (now - this.lastSound_ < Blockly.SOUND_LIMIT) {
+                return;
+            }
+            this.lastSound_ = now;
+            var mySound;
+            var ie9 = goog.userAgent.DOCUMENT_MODE &&
+                goog.userAgent.DOCUMENT_MODE === 9;
+            if (ie9 || goog.userAgent.IPAD || goog.userAgent.ANDROID) {
+                // Creating a new audio node causes lag in IE9, Android and iPad. Android
+                // and IE9 refetch the file from the server, iPad uses a singleton audio
+                // node which must be deleted and recreated for each new audio tag.
+                mySound = sound;
+            } else {
+                mySound = sound.cloneNode();
+            }
+            mySound.volume = (opt_volume === undefined ? 1 : opt_volume);
+            mySound.play();
+        } else if (this.options.parentWorkspace) {
+            // Maybe a workspace on a lower level knows about this sound.
+            this.options.parentWorkspace.playAudio(name, opt_volume);
+        }
     }
-    this.lastSound_ = now;
-    var mySound;
-    var ie9 = goog.userAgent.DOCUMENT_MODE &&
-              goog.userAgent.DOCUMENT_MODE === 9;
-    if (ie9 || goog.userAgent.IPAD || goog.userAgent.ANDROID) {
-      // Creating a new audio node causes lag in IE9, Android and iPad. Android
-      // and IE9 refetch the file from the server, iPad uses a singleton audio
-      // node which must be deleted and recreated for each new audio tag.
-      mySound = sound;
-    } else {
-      mySound = sound.cloneNode();
-    }
-    mySound.volume = (opt_volume === undefined ? 1 : opt_volume);
-    mySound.play();
-  } else if (this.options.parentWorkspace) {
-    // Maybe a workspace on a lower level knows about this sound.
-    this.options.parentWorkspace.playAudio(name, opt_volume);
-  }
 };
 
 /**
