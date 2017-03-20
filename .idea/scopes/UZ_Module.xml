@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="UZ Module" pattern="src:uz..*&amp;&amp;!src:uz.javatools..*&amp;&amp;!src:uz.swingtools..*&amp;&amp;!src:uz.batch..*&amp;&amp;!src:uz.sys..*&amp;&amp;!src:uz.s9server..*&amp;&amp;!src:uz.s9client..*&amp;&amp;!src:uz.s9..*&amp;&amp;!src:uz.skels..*||test:uz..*&amp;&amp;!test:uz.javatools..*&amp;&amp;!test:uz.swingtools..*&amp;&amp;!test:uz.batch..*&amp;&amp;!test:uz.sys..*&amp;&amp;!test:uz.s9server..*&amp;&amp;!test:uz.s9client..*&amp;&amp;!test:uz.s9..*&amp;&amp;!test:uz.skels..*" />
-</component>
