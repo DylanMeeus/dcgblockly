@@ -877,3 +877,85 @@ Blockly.Blocks['text_newline'] = {
         this.contextMenu = false;
     }
 };
+
+/**
+ * Block to represent the 'startsWith' syntax.
+ * @type {{init: Blockly.Blocks.variable_in_list.init, onchange: Blockly.Blocks.variable_in_list.onchange}}
+ */
+Blockly.Blocks['text_startsWith'] = {
+    /**
+     * Block for comparison operator.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setHelpUrl(Blockly.Msg.LOGIC_COMPARE_HELPURL);
+        this.setColour(Blockly.Blocks.lists.HUE);
+
+        this.setOutput(true, 'Boolean');
+        this.appendValueInput('A');
+        this.appendDummyInput().appendField("begint met")
+        this.appendValueInput('B')
+        this.setInputsInline(true);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        this.setTooltip("Begint het linkerelement met de tekst uit het rechterelement.");
+        //this.prevBlocks_ = [null, null];
+        this.setNextStatement(false); // Because this block should only be put inside an if-block. The if-block has the connection to next.
+    },
+
+    /**
+     * This is called for every change to the workspace.
+     * Here I could verify that one of the parts of the blocks is a list, and the other a variable.
+     * @param e
+     */
+    onchange: function(e) {
+        var blockA = this.getInputTargetBlock('A');
+        var blockB = this.getInputTargetBlock('B');
+
+        // todo: write matching logic, and alerts.
+
+        //this.prevBlocks_[0] = blockA;
+        //this.prevBlocks_[1] = blockB;
+    }
+};
+
+/**
+ * Block to represent the 'endsWith' syntax.
+ * @type {{init: Blockly.Blocks.text_startsWith.init, onchange: Blockly.Blocks.text_startsWith.onchange}}
+ */
+Blockly.Blocks['text_endsWith'] = {
+    /**
+     * Block for comparison operator.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setHelpUrl(Blockly.Msg.LOGIC_COMPARE_HELPURL);
+        this.setColour(Blockly.Blocks.lists.HUE);
+
+        this.setOutput(true, 'Boolean');
+        this.appendValueInput('A');
+        this.appendDummyInput().appendField("eindigt met")
+        this.appendValueInput('B')
+        this.setInputsInline(true);
+        // Assign 'this' to a variable for use in the tooltip closure below.
+        var thisBlock = this;
+        this.setTooltip("Eindigt het linkerelement met de tekst uit het rechterelement.");
+        //this.prevBlocks_ = [null, null];
+        this.setNextStatement(false); // Because this block should only be put inside an if-block. The if-block has the connection to next.
+    },
+
+    /**
+     * This is called for every change to the workspace.
+     * Here I could verify that one of the parts of the blocks is a list, and the other a variable.
+     * @param e
+     */
+    onchange: function(e) {
+        var blockA = this.getInputTargetBlock('A');
+        var blockB = this.getInputTargetBlock('B');
+
+        // todo: write matching logic, and alerts.
+
+        //this.prevBlocks_[0] = blockA;
+        //this.prevBlocks_[1] = blockB;
+    }
+};
