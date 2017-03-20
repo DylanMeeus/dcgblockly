@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="swingtools" pattern="src:uz.swingtools..*||lib:uz.swingtools..*||lib:javax.swing.JOptionPane||src:uz.common.icon..*||lib:uz.common.icon..*" />
-</component>

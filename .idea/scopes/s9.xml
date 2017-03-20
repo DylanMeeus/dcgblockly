@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="s9" pattern="(src:uz..*||lib:uz..*)&amp;&amp;!(src:uz.s9client..*||src:uz.*.gui..*||src:uz.*.app..*||lib:uz.s9client..*||lib:uz.*.gui..*||lib:uz.*.app..*)&amp;&amp;!(src:uz.javatools..*||lib:uz.javatools..*||src:uz.common.core..*||lib:uz.common.core..*)&amp;&amp;!(src:uz.swingtools..*||lib:uz.swingtools..*||lib:javax.swing.JOptionPane||src:uz.common.icon..*||lib:uz.common.icon..*)&amp;&amp;!(src:uz.s9server..*||lib:uz.s9server..*)" />
-</component>

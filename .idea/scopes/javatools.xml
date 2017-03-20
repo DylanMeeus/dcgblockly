@@ -1,3 +1,0 @@
-<component name="DependencyValidationManager">
-  <scope name="javatools" pattern="src:uz.javatools..*||lib:uz.javatools..*||src:uz.common.core..*||lib:uz.common.core..*" />
-</component>
