@@ -3,7 +3,7 @@ goog.provide('Blockly.Dcg.comment');
 goog.require('Blockly.Dcg');
 
 
-
+// Generator for a comment in DCG (Text between @..@)
 Blockly.Dcg['singleComment'] = function(block) {
     // Variable setter.
     var argument0 = Blockly.Dcg.valueToCode(block, 'VALUE',

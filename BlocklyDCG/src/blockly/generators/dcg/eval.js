@@ -3,8 +3,7 @@ goog.provide('Blockly.Dcg.eval');
 
 goog.require('Blockly.Dcg');
 
-
-
+// Generator for an eval statement in DCG
 Blockly.Dcg['eval'] = function(block) {
     // Variable setter.
     var argument0 = Blockly.Dcg.valueToCode(block, 'VALUE',

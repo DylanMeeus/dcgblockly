@@ -1,28 +1,29 @@
+
+/**
+ * @fileoverview Comment blocks for Blockly.
+ * @author Dylan Meeus
+ */
+
+goog.provide('Blockly.Blocks.comment');
+
+goog.require('Blockly.Blocks');
+
+Blockly.Blocks.comment.HUE = "#888888"; // define the colour for all HTML blocks.
+
+
+/**
+ * Block for a single comment in DCG
+ * @type {{init: Blockly.Blocks.singleComment.init}}
+ */
 Blockly.Blocks['singleComment'] = {
     init: function() {
         this.appendValueInput('VALUE')
             .setCheck('String')
             .appendField('commentaar: ');
-        this.setColour("#888888");
+        this.setColour(Blockly.Blocks.comment.HUE);
         this.setTooltip('Commentaar, wordt niet geinterpreteerd in de code.');
         this.setHelpUrl('wiki');
         this.setNextStatement(true);
         this.setPreviousStatement(true);
     }
 };
-
-/*
-
-Blockly.Blocks['blockComment'] = {
-    init: function() {
-        this.appendValueInput('VALUE')
-            .setCheck('String')
-            .appendField('eval regel: ');
-        this.setColour(160);
-        this.setTooltip('Laad een andere DCG regel.');
-        this.setHelpUrl('wiki');
-        this.setNextStatement(true);
-    }
-};
-
-*/

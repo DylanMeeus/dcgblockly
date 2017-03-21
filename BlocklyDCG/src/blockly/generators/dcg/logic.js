@@ -116,17 +116,6 @@ Blockly.Dcg['logic_null'] = function(block) {
   return ['None', Blockly.Dcg.ORDER_ATOMIC];
 };
 
-Blockly.Dcg['logic_ternary'] = function(block) {
-  // Ternary operator.
-  var value_if = Blockly.Dcg.valueToCode(block, 'IF',
-      Blockly.Dcg.ORDER_CONDITIONAL) || 'False';
-  var value_then = Blockly.Dcg.valueToCode(block, 'THEN',
-      Blockly.Dcg.ORDER_CONDITIONAL) || 'None';
-  var value_else = Blockly.Dcg.valueToCode(block, 'ELSE',
-      Blockly.Dcg.ORDER_CONDITIONAL) || 'None';
-  var code = value_then + ' if ' + value_if + ' else ' + value_else;
-  return [code, Blockly.Dcg.ORDER_CONDITIONAL];
-};
 
 
 /**

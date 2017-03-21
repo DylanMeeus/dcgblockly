@@ -472,58 +472,6 @@ Blockly.Blocks['logic_null'] = {
   }
 };
 
-Blockly.Blocks['logic_ternary'] = {
-  /**
-   * Block for ternary operator.
-   * @this Blockly.Block
-   */
-  init: function() {
-    this.setHelpUrl(Blockly.Msg.LOGIC_TERNARY_HELPURL);
-    this.setColour(Blockly.Blocks.logic.HUE);
-    this.appendValueInput('IF')
-        .setCheck('Boolean')
-        .appendField(Blockly.Msg.LOGIC_TERNARY_CONDITION);
-    this.appendValueInput('THEN')
-        .appendField(Blockly.Msg.LOGIC_TERNARY_IF_TRUE);
-    this.appendValueInput('ELSE')
-        .appendField(Blockly.Msg.LOGIC_TERNARY_IF_FALSE);
-    this.setOutput(true);
-    this.setTooltip(Blockly.Msg.LOGIC_TERNARY_TOOLTIP);
-    this.prevParentConnection_ = null;
-  },
-  /**
-   * Called whenever anything on the workspace changes.
-   * Prevent mismatched types.
-   * @param {!Blockly.Events.Abstract} e Change event.
-   * @this Blockly.Block
-   */
-  onchange: function(e) {
-    var blockA = this.getInputTargetBlock('THEN');
-    var blockB = this.getInputTargetBlock('ELSE');
-    var parentConnection = this.outputConnection.targetConnection;
-    // Disconnect blocks that existed prior to this change if they don't match.
-    if ((blockA || blockB) && parentConnection) {
-      for (var i = 0; i < 2; i++) {
-        var block = (i == 1) ? blockA : blockB;
-        if (block && !block.outputConnection.checkType_(parentConnection)) {
-          // Ensure that any disconnections are grouped with the causing event.
-          Blockly.Events.setGroup(e.group);
-          if (parentConnection === this.prevParentConnection_) {
-            this.unplug();
-            parentConnection.getSourceBlock().bumpNeighbours_();
-          } else {
-            block.unplug();
-            block.bumpNeighbours_();
-          }
-          Blockly.Events.setGroup(false);
-        }
-      }
-    }
-    this.prevParentConnection_ = parentConnection;
-  }
-};
-
-
 /**
  * Container for case-statements.
  * @type {{init: Blockly.Blocks.html_blocks_container.init}}

@@ -1,5 +1,7 @@
+
 /**
- * Created by dmeeus1 on 10-3-2017.
+ * @fileoverview HTML blocks for Blockly.
+ * @author Dylan Meeus
  */
 
 'use strict';
@@ -9,11 +11,6 @@ goog.provide('Blockly.Blocks.html');
 goog.require('Blockly.Blocks');
 
 Blockly.Blocks.html.HUE = "#6e7f80"; // define the colour for all HTML blocks.
-
-
-// We need some elements for general HTML structure
-// This includes : HTML, P, H1..H4.
-// These are not layout per-se, but more structure.
 
 
 /**
