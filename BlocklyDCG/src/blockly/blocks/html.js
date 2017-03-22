@@ -19,7 +19,7 @@ Blockly.Blocks.html.HUE = "#6e7f80"; // define the colour for all HTML blocks.
  */
 Blockly.Blocks['html_blocks_container'] = {
     /**
-     * Mutator block for list container.
+     * Mutator block for html blocks container.
      * @this Blockly.Block
      */
     init: function() {
@@ -27,7 +27,7 @@ Blockly.Blocks['html_blocks_container'] = {
         this.appendDummyInput()
             .appendField("Layout-element");
         this.appendStatementInput('STACK');
-        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP);
+        this.setTooltip("Een HTML blok container");
         this.contextMenu = false;
     }
 };
@@ -47,7 +47,7 @@ Blockly.Blocks['html_block'] = {
             .appendField("element");
         this.setPreviousStatement(true);
         this.setNextStatement(true);
-        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_ITEM_TOOLTIP);
+        this.setTooltip("Een HTML blok");
         this.contextMenu = false;
     }
 };
@@ -68,7 +68,7 @@ Blockly.Blocks['html_start'] = {
         this.updateShape_();
         this.setOutput(true, 'Array');
         this.setMutator(new Blockly.Mutator(['html_block']));
-        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
+        this.setTooltip("Begin van een tekst-met-layout element.");
     },
 
     /**

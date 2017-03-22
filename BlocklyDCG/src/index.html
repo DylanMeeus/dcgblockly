@@ -234,6 +234,14 @@
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
             }
+
+            document.addEventListener("keydown", function(e) {
+                if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
+                    e.preventDefault();
+                    console.log("Blocking the save action, to not save the webpage.")
+                    console.log("Maybe change this implementation to save the DCG rule to the database?")
+                }
+            }, false);
         </script>
 
     </body>
