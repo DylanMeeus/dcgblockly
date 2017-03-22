@@ -190,8 +190,7 @@
 
         <!-- popup window -->
         <div id="dialog" title="Tekst ingeven">
-            <textarea id="dialogInput" rows=5 cols=30 id="multiLineTextInput"></textarea>
-            <button id="dialogGenerateButton" onclick="generateForDialog()">generate</button>
+            <textarea id="dialogInput" rows=8 cols=40 id="multiLineTextInput"></textarea>
         </div>
 
         <script>
@@ -270,7 +269,18 @@
             // Show the popup dialog.
             function showDialog(){
                 $(function(){
-                    $("#dialog").dialog();
+                    $("#dialog").dialog({
+                        resizable: true,
+                        height: 300,
+                        width: 400,
+                        modal: true,
+                        buttons: {
+                            "Generate" : function(){
+                                generateForDialog();
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
                 });
             }
 
