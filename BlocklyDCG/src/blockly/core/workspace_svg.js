@@ -45,6 +45,7 @@ goog.require('goog.math.Coordinate');
 goog.require('goog.userAgent');
 
 
+var valueblocktemplate = '<value name="ADD[#]"><block type="text" id="[valueID]"><field name="TEXT">[value]</field></block></value>'
 
 var loadAudio = false;
 var playAudio = false;
@@ -1162,6 +1163,38 @@ Blockly.WorkspaceSvg.prototype.showContextMenu_ = function(e) {
       toggleOption(false);
     };
     menuOptions.push(expandOption);
+
+    var addListOption = {enabled:true};
+    addListOption.text = "Voeg lijst toe";
+    addListOption.callback = function(){
+        var input = prompt("Voeg lijst toe (CSV)");
+        var inputSplit = input.split(",");
+        var itemCount = inputSplit.length;
+        var xml = '<xml xmlns="http://www.w3.org/1999/xhtml">';
+        var listID = 1; // create random ID
+        xml += '<block type="lists_create_with" id="' + listID + '" x="15" y="20"><mutation items="' + itemCount + '"></mutation>[valueblocks]';
+
+        // create value blocks.
+        // blockContainerXML contains all the value block XML strings that we need to add to the global xml.
+        var blockContainerXML = "";
+        for(var i = 0; i < itemCount; i++){
+            var valueBlockXML = valueblocktemplate;
+            valueBlockXML = valueBlockXML.replace("[#]",i);
+            valueBlockXML = valueBlockXML.replace("[valueID]",i);
+            valueBlockXML = valueBlockXML.replace("[value]",inputSplit[i]);
+            blockContainerXML += valueBlockXML;
+        }
+
+        // end the parent block
+        xml = xml.replace("[valueblocks]",blockContainerXML);
+        xml += '</block></xml>';
+
+        // Add the new block to the DOM.
+        var dom = Blockly.Xml.textToDom(xml);
+        Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
+    }
+      menuOptions.push(addListOption);
+
   }
 
   // Option to delete all blocks.
