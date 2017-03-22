@@ -12,6 +12,12 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+
+        <!-- popup CSS -->
+        <link rel="stylesheet" href="css/dialog.css">
+
+
+
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
         <!-- blockly scripts -->
@@ -52,8 +58,16 @@
         <script src="blockly/generators/dcg/loops.js"></script>
 
 
+        <!-- custom javascript files -->
         <!-- javascript to alter parts of the toolbox -->
         <script src="js/toolbox.js"></script>
+
+        <!-- for block generation -->
+        <script src="js/dcgblockly.js"></script>
+
+        <!-- JQuery for dialog windows -->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
         <style>
@@ -174,6 +188,12 @@
         </xml>
 
 
+        <!-- popup window -->
+        <div id="dialog" title="Tekst ingeven">
+            <textarea id="dialogInput" rows=5 cols=30 id="multiLineTextInput"></textarea>
+            <button id="dialogGenerateButton" onclick="generateForDialog()">generate</button>
+        </div>
+
         <script>
             var blocklyArea = document.getElementById('blocklyArea');
             var blocklyDiv = document.getElementById('blocklyDiv');
@@ -228,13 +248,17 @@
                 console.log(xmlText);
             }
 
-            function loadFromXML(){
-                var xml = prompt("xml");
+            function loadFromXML(xml){
+                var inputXML = xml;
+                if(inputXML == null) {
+                    inputXML = prompt("xml");
+                }
                 var dom = Blockly.Xml.textToDom(xml);
                 Blockly.mainWorkspace.clear();
                 Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
             }
 
+            // Prevent CTRL+S from opening the Save File dialog.
             document.addEventListener("keydown", function(e) {
                 if (e.keyCode == 83 && (navigator.platform.match("Mac") ? e.metaKey : e.ctrlKey)) {
                     e.preventDefault();
@@ -242,6 +266,20 @@
                     console.log("Maybe change this implementation to save the DCG rule to the database?")
                 }
             }, false);
+
+            // Show the popup dialog.
+            function showDialog(){
+                $(function(){
+                    $("#dialog").dialog();
+                });
+            }
+
+            // Generate blocks based on the text entered in the dialog
+            function generateForDialog(){
+                var inputText = document.getElementById("dialogInput").value;
+                var xml = generateMultiLineBlockXML(inputText);
+                loadFromXML(xml);
+            }
         </script>
 
     </body>

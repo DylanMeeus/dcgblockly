@@ -1193,7 +1193,15 @@ Blockly.WorkspaceSvg.prototype.showContextMenu_ = function(e) {
         var dom = Blockly.Xml.textToDom(xml);
         Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
     }
+
+      var addTextOption = {enabled:true};
+      addTextOption.text = "Voeg tekst toe"
+      addTextOption.callback = function() {
+          showDialog();
+      }
+
       menuOptions.push(addListOption);
+      menuOptions.push(addTextOption);
 
   }
 
