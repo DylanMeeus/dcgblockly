@@ -418,5 +418,10 @@ function editMultiLineText(block){
             multiText += output;
         }
     }
-    showEditDialog(multiText,blockID)
+    /*
+    to load the block XML.
+    var blockXML = Blockly.Xml.blockToDom(block,false); // false because I do want the ID (because workspaces have IDs, thus if I want to match on this XML, it needs to be pretty exact.
+    var xmlText = Blockly.Xml.domToText(blockXML);
+    */
+    showEditDialog(multiText,blockID);
 }

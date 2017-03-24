@@ -196,7 +196,7 @@
         <script>
             var blocklyArea = document.getElementById('blocklyArea');
             var blocklyDiv = document.getElementById('blocklyDiv');
-            var parentBlockID = -1; // this will hold our "state" of which block is being editted.
+            var parentBlockID = null; // this will hold our "state" of which block is being editted.
 
             var workspace = Blockly.inject(blocklyDiv,
                 {media: 'blockly/media/',
@@ -255,9 +255,9 @@
                 if(inputXML == null) {
                     inputXML = prompt("xml");
                 }
-                var dom = Blockly.Xml.textToDom(xml);
+                var dom = Blockly.Xml.textToDom(inputXML);
                 if(clearFirst){
-                Blockly.mainWorkspace.clear();
+                    Blockly.mainWorkspace.clear();
                 }
                 Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
             }
@@ -293,28 +293,32 @@
             function generateForDialog(){
                 var inputText = document.getElementById("dialogInput").value;
 
-                if(parentBlockID != -1){
+                if(parentBlockID != null){
                     // This means we are editing a parent block.
                     var xml = Blockly.Xml.workspaceToDom(workspace);
                     var xmlText = Blockly.Xml.domToText(xml);
-                    editMultiLineTextXML(xmlText, parentBlockID, inputText); // Rebuild the current workspace with the changes.
-                    loadFromXML(xml, true); // For this one, I will need to rebuild the entire DOM..
+                    var newXML = editMultiLineTextXML(xmlText, parentBlockID, inputText); // Rebuild the current workspace with the changes.
+                    loadFromXML(newXML, true); // For this one, I will need to rebuild the entire DOM..
                 } else {
-                    var xml = generateMultiLineBlockXML(inputText);
+                    var xml = generateMultiLineBlockXML(inputText,true); // true is to wrap it in XML tags.
                     loadFromXML(xml,false);
                 }
 
-                inputText.value = ""; // reset the input field in the dialog.
+                // reset parentBlockXML
+                parentBlockXML = null;
+                // reset the input field in the dialog
+                inputText.value = "";
             }
 
 
 
-            function showEditDialog(text,id){
+            function showEditDialog(text,parentID){
                 var dialogInput = document.getElementById("dialogInput");
-                parentBlockID = id;
+                parentBlockID = parentID;
                 dialogInput.value = text;
                 showDialog();
             }
+
         </script>
 
     </body>
