@@ -411,17 +411,17 @@ function editMultiLineText(block){
 
     // Rebuild the text based on the input blocks.
     for (var i = 0; i < block.itemCount_; i++) {
-        var output = Blockly.Dcg.valueToCode(block, 'ADD' + i,
-                Blockly.Dcg.ORDER_NONE) || 'None';
+        var output = Blockly.Dcg.valueToCode(block, 'ADD' + i, Blockly.Dcg.ORDER_NONE) || 'None';
+
+        // the output is the code as it was entered, since these are strings in DCG code (') we need to remove that apostrophe
+        output = output.replace(/[']/g,"").replace("\\n","\n"); // make the escaped newlines into actual newlines
 
         if(output != "None"){ // ignore this, this is an empty blog the user entered.
             multiText += output;
+            console.log(output);
+            console.log(multiText);
         }
     }
-    /*
-    to load the block XML.
-    var blockXML = Blockly.Xml.blockToDom(block,false); // false because I do want the ID (because workspaces have IDs, thus if I want to match on this XML, it needs to be pretty exact.
-    var xmlText = Blockly.Xml.domToText(blockXML);
-    */
+
     showEditDialog(multiText,blockID);
 }
