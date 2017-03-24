@@ -169,6 +169,7 @@ Blockly.Blocks['multi_text'] = {
      * @this Blockly.Block
      */
     init: function() {
+        var thisBlock = this;
         this.setHelpUrl(Blockly.Msg.LISTS_CREATE_WITH_HELPURL);
         this.setColour(Blockly.Blocks.texts.HUE);
         this.itemCount_ = 3;
@@ -176,6 +177,18 @@ Blockly.Blocks['multi_text'] = {
         this.setOutput(true, 'Array');
         this.setMutator(new Blockly.Mutator(['text_block']));
         this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
+        // add context menu to edit the text in the multiline block.
+        this.customContextMenu = function(options){
+            var helpOption = {enabled: true};
+            helpOption.text = "Pas tekst aan";
+            helpOption.callback = function() {
+                editMultiLineText(thisBlock);
+            };
+            // we want to add the new option to the start of the list
+            options = options.reverse();
+            options.push(helpOption);
+            options = options.reverse();
+        }
     },
 
     /**
@@ -389,3 +402,21 @@ Blockly.Blocks['text_endsWith'] = {
         //this.prevBlocks_[1] = blockB;
     }
 };
+
+
+function editMultiLineText(block){
+    var blockID = block.id;
+
+    var multiText = "";
+
+    // Rebuild the text based on the input blocks.
+    for (var i = 0; i < block.itemCount_; i++) {
+        var output = Blockly.Dcg.valueToCode(block, 'ADD' + i,
+                Blockly.Dcg.ORDER_NONE) || 'None';
+
+        if(output != "None"){ // ignore this, this is an empty blog the user entered.
+            multiText += output;
+        }
+    }
+    showEditDialog(multiText,blockID)
+}

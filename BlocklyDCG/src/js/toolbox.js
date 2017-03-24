@@ -16,7 +16,6 @@ colourMap.set("default", "black"); // Default for in case no other colour is fou
  */
 function colourToolbox(){
     var toolboxRows = document.getElementsByClassName("blocklyTreeLabel"); // todo: this returns double the actual elements. Fix this. (filter)
-    console.log(toolboxRows);
     window.clearInterval(interval);
 
     if(toolboxRows){
@@ -34,4 +33,5 @@ function colourToolbox(){
 
 }
 
-var interval = setInterval(colourToolbox,1000); // poll for existance of toolbox. (this is rendered later than this script is executed
+// poll for existance of toolbox. (this is rendered later than this script is executed)
+var interval = setInterval(colourToolbox,1000);

@@ -196,9 +196,12 @@
         <script>
             var blocklyArea = document.getElementById('blocklyArea');
             var blocklyDiv = document.getElementById('blocklyDiv');
+            var parentBlockID = -1; // this will hold our "state" of which block is being editted.
+
             var workspace = Blockly.inject(blocklyDiv,
                 {media: 'blockly/media/',
                     toolbox: document.getElementById('toolbox')});
+
             var onresize = function(e) {
                 // Compute the absolute coordinates and dimensions of blocklyArea.
                 var element = blocklyArea;
@@ -247,13 +250,15 @@
                 console.log(xmlText);
             }
 
-            function loadFromXML(xml){
+            function loadFromXML(xml, clearFirst){
                 var inputXML = xml;
                 if(inputXML == null) {
                     inputXML = prompt("xml");
                 }
                 var dom = Blockly.Xml.textToDom(xml);
+                if(clearFirst){
                 Blockly.mainWorkspace.clear();
+                }
                 Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, dom);
             }
 
@@ -287,8 +292,28 @@
             // Generate blocks based on the text entered in the dialog
             function generateForDialog(){
                 var inputText = document.getElementById("dialogInput").value;
-                var xml = generateMultiLineBlockXML(inputText);
-                loadFromXML(xml);
+
+                if(parentBlockID != -1){
+                    // This means we are editing a parent block.
+                    var xml = Blockly.Xml.workspaceToDom(workspace);
+                    var xmlText = Blockly.Xml.domToText(xml);
+                    editMultiLineTextXML(xmlText, parentBlockID, inputText); // Rebuild the current workspace with the changes.
+                    loadFromXML(xml, true); // For this one, I will need to rebuild the entire DOM..
+                } else {
+                    var xml = generateMultiLineBlockXML(inputText);
+                    loadFromXML(xml,false);
+                }
+
+                inputText.value = ""; // reset the input field in the dialog.
+            }
+
+
+
+            function showEditDialog(text,id){
+                var dialogInput = document.getElementById("dialogInput");
+                parentBlockID = id;
+                dialogInput.value = text;
+                showDialog();
             }
         </script>
 

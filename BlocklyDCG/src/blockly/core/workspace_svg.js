@@ -1202,7 +1202,6 @@ Blockly.WorkspaceSvg.prototype.showContextMenu_ = function(e) {
 
       menuOptions.push(addListOption);
       menuOptions.push(addTextOption);
-
   }
 
   // Option to delete all blocks.
