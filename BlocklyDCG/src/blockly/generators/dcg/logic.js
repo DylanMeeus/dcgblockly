@@ -165,7 +165,7 @@ Blockly.Dcg['multi_and'] = function(block) {
     var elements = new Array(block.itemCount_);
     for (var i = 0; i < block.itemCount_; i++) {
         elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
-                Blockly.Dcg.ORDER_NONE) || 'None';
+                Blockly.Dcg.ORDER_NONE) || 'False';
 
     }
     var code = '(' + elements.join(' and ') + ')'; // put the fields between pipes, and remove the ' marks from the text output. (from text blocks)
@@ -182,7 +182,7 @@ Blockly.Dcg['multi_or'] = function(block) {
     var elements = new Array(block.itemCount_);
     for (var i = 0; i < block.itemCount_; i++) {
         elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
-                Blockly.Dcg.ORDER_NONE) || 'None';
+                Blockly.Dcg.ORDER_NONE) || 'False';
 
     }
     var code = '(' + elements.join(' or ') + ')'; // put the fields between pipes, and remove the ' marks from the text output. (from text blocks)
