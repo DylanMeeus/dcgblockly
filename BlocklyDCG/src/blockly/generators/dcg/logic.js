@@ -141,9 +141,6 @@ Blockly.Dcg['controls_switch'] = function(block) {
 };
 
 
-
-
-
 /**
  * Block for individual case.
  * @param block
@@ -156,6 +153,3 @@ Blockly.Dcg['controls_switch_case'] = function(block) {
     var code = "= " + comparator + "{ " + output + " }"; // { } as we can wrap another statement in here.
     return code;
 };
-
-
-
