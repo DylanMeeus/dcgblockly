@@ -96,6 +96,29 @@ Blockly.Blocks['text_isEmpty'] = {
   }
 };
 
+Blockly.Blocks['text_notEmpty'] = {
+    /**
+     * Block for is the string null?
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.jsonInit({
+            "message0": "%1 niet leeg",
+            "args0": [
+                {
+                    "type": "input_value",
+                    "name": "VALUE",
+                    "check": ['String', 'Array']
+                }
+            ],
+            "output": 'Boolean',
+            "colour": Blockly.Blocks.texts.HUE,
+            "tooltip": Blockly.Msg.TEXT_ISEMPTY_TOOLTIP,
+            "helpUrl": Blockly.Msg.TEXT_ISEMPTY_HELPURL
+        });
+    }
+};
+
 
 Blockly.Blocks['text_print'] = {
   /**

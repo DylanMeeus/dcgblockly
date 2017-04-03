@@ -36,10 +36,17 @@ Blockly.Dcg['text'] = function(block) {
 
 
 Blockly.Dcg['text_isEmpty'] = function(block) {
-  // Is the string null or array empty?
   var text = Blockly.Dcg.valueToCode(block, 'VALUE',
       Blockly.Dcg.ORDER_NONE) || '\'\'';
   var code =  text + ' = \"\"';
+  return [code, Blockly.Dcg.ORDER_LOGICAL_NOT];
+};
+
+
+Blockly.Dcg['text_notEmpty'] = function(block) {
+  var text = Blockly.Dcg.valueToCode(block, 'VALUE',
+      Blockly.Dcg.ORDER_NONE) || '\'\'';
+  var code =  text + ' \\= \"\"';
   return [code, Blockly.Dcg.ORDER_LOGICAL_NOT];
 };
 
