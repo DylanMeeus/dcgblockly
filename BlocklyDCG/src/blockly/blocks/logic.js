@@ -756,7 +756,7 @@ Blockly.Blocks['multi_and'] = {
         this.setColour(Blockly.Blocks.logic.HUE);
         this.itemCount_ = 3;
         this.updateShape_();
-        this.setOutput(true, 'Array');
+        this.setOutput(true, 'Boolean');
         this.setMutator(new Blockly.Mutator(['multi_and_block']));
         this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
         // add con menu to edit the text in the multiline block.
@@ -897,7 +897,7 @@ Blockly.Blocks['multi_or'] = {
         this.setColour(Blockly.Blocks.logic.HUE);
         this.itemCount_ = 3;
         this.updateShape_();
-        this.setOutput(true, 'Array');
+        this.setOutput(true, 'Boolean');
         this.setMutator(new Blockly.Mutator(['multi_or_block']));
         this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
         // add context menu to edit the text in the multiline block.
