@@ -153,3 +153,38 @@ Blockly.Dcg['controls_switch_case'] = function(block) {
     var code = "= " + comparator + "{ " + output + " }"; // { } as we can wrap another statement in here.
     return code;
 };
+
+
+/**
+ * Generator for an AND-statement with multiple AND-predicates.
+ * @param block
+ * @returns {*[]}
+ */
+Blockly.Dcg['multi_and'] = function(block) {
+    // Create a list with any number of elements of any type.
+    var elements = new Array(block.itemCount_);
+    for (var i = 0; i < block.itemCount_; i++) {
+        elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
+                Blockly.Dcg.ORDER_NONE) || 'None';
+
+    }
+    var code = '(' + elements.join(' and ') + ')'; // put the fields between pipes, and remove the ' marks from the text output. (from text blocks)
+    return [code, Blockly.Dcg.ORDER_ATOMIC];
+};
+
+/**
+ * Generator for an OR-statement with multiple OR-predicates.
+ * @param block
+ * @returns {*[]}
+ */
+Blockly.Dcg['multi_or'] = function(block) {
+    // Create a list with any number of elements of any type.
+    var elements = new Array(block.itemCount_);
+    for (var i = 0; i < block.itemCount_; i++) {
+        elements[i] = Blockly.Dcg.valueToCode(block, 'ADD' + i,
+                Blockly.Dcg.ORDER_NONE) || 'None';
+
+    }
+    var code = '(' + elements.join(' or ') + ')'; // put the fields between pipes, and remove the ' marks from the text output. (from text blocks)
+    return [code, Blockly.Dcg.ORDER_ATOMIC];
+};

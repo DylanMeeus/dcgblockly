@@ -684,3 +684,342 @@ Blockly.Blocks['controls_switch'] = {
         }
     }
 };
+
+
+Blockly.Blocks['multi_logic_container'] = {
+    /**
+     * Mutator block for list container.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setColour(Blockly.Blocks.logic.HUE);
+        this.appendDummyInput()
+            .appendField("Logica-element");
+        this.appendStatementInput('STACK');
+        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_CONTAINER_TOOLTIP);
+        this.contextMenu = false;
+    }
+};
+
+
+/**
+ * Block for the multi_logic_container when called from the multi_and block
+ * @type {{init: Blockly.Blocks.multi_and_block.init}}
+ */
+Blockly.Blocks['multi_and_block'] = {
+    /**
+     * Mutator block for adding items.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setColour(Blockly.Blocks.logic.HUE);
+        this.appendDummyInput()
+            .appendField("en");
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setTooltip("Voeg en-element toe");
+        this.contextMenu = false;
+    }
+};
+
+
+/**
+ * Block for the multi_logic_container when called from multi_or block
+ * @type {{init: Blockly.Blocks.multi_or_block.init}}
+ */
+Blockly.Blocks['multi_or_block'] = {
+    /**
+     * Mutator block for adding items.
+     * @this Blockly.Block
+     */
+    init: function() {
+        this.setColour(Blockly.Blocks.logic.HUE);
+        this.appendDummyInput()
+            .appendField("of");
+        this.setPreviousStatement(true);
+        this.setNextStatement(true);
+        this.setTooltip("Voeg of-element toe");
+        this.contextMenu = false;
+    }
+};
+
+
+
+Blockly.Blocks['multi_and'] = {
+    /**
+     * Block for creating a list with any number of elements of any type.
+     * @this Blockly.Block
+     */
+    init: function() {
+        var thisBlock = this;
+        this.setHelpUrl(Blockly.Msg.LISTS_CREATE_WITH_HELPURL);
+        this.setColour(Blockly.Blocks.logic.HUE);
+        this.itemCount_ = 3;
+        this.updateShape_();
+        this.setOutput(true, 'Array');
+        this.setMutator(new Blockly.Mutator(['multi_and_block']));
+        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
+        // add con menu to edit the text in the multiline block.
+        this.customContextMenu = function(options){
+            var helpOption = {enabled: true};
+            helpOption.text = "Meerdere en-predicaten";
+            helpOption.callback = function() {
+                editMultiLineText(thisBlock);
+            };
+            // we want to add the new option to the start of the list
+            options = options.reverse();
+            options.push(helpOption);
+            options = options.reverse();
+        }
+    },
+
+    /**
+     * Create XML to represent the HTML-elements contained in this HTML block..
+     * @return {!Element} XML storage element.
+     * @this Blockly.Block
+     */
+    mutationToDom: function() {
+        var container = document.createElement('mutation');
+        container.setAttribute('items', this.itemCount_);
+        return container;
+    },
+    /**
+     * Parse XML to restore the list inputs.
+     * @param {!Element} xmlElement XML storage element.
+     * @this Blockly.Block
+     */
+    domToMutation: function(xmlElement) {
+        this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
+        this.updateShape_();
+    },
+    /**
+     * Populate the mutator's dialog with this block's components.
+     * @param {!Blockly.Workspace} workspace Mutator's workspace.
+     * @return {!Blockly.Block} Root block in mutator.
+     * @this Blockly.Block
+     */
+    decompose: function(workspace) {
+        var containerBlock = workspace.newBlock('multi_logic_container');
+        containerBlock.initSvg();
+        var connection = containerBlock.getInput('STACK').connection;
+        for (var i = 0; i < this.itemCount_; i++) {
+            var itemBlock = workspace.newBlock('multi_and_block');
+            itemBlock.initSvg();
+            connection.connect(itemBlock.previousConnection);
+            connection = itemBlock.nextConnection;
+        }
+        return containerBlock;
+    },
+    /**
+     * Reconfigure this block based on the mutator dialog's components.
+     * @param {!Blockly.Block} containerBlock Root block in mutator.
+     * @this Blockly.Block
+     */
+    compose: function(containerBlock) {
+        var itemBlock = containerBlock.getInputTargetBlock('STACK');
+        // Count number of inputs.
+        var connections = [];
+        while (itemBlock) {
+            connections.push(itemBlock.valueConnection_);
+            itemBlock = itemBlock.nextConnection &&
+                itemBlock.nextConnection.targetBlock();
+        }
+        // Disconnect any children that don't belong.
+        for (var i = 0; i < this.itemCount_; i++) {
+            var connection = this.getInput('ADD' + i).connection.targetConnection;
+            if (connection && connections.indexOf(connection) == -1) {
+                connection.disconnect();
+            }
+        }
+        this.itemCount_ = connections.length;
+        this.updateShape_();
+        // Reconnect any child blocks.
+        for (var i = 0; i < this.itemCount_; i++) {
+            Blockly.Mutator.reconnect(connections[i], this, 'ADD' + i);
+        }
+    },
+    /**
+     * Store pointers to any connected child blocks.
+     * @param {!Blockly.Block} containerBlock Root block in mutator.
+     * @this Blockly.Block
+     */
+    saveConnections: function(containerBlock) {
+        var itemBlock = containerBlock.getInputTargetBlock('STACK');
+        var i = 0;
+        while (itemBlock) {
+            var input = this.getInput('ADD' + i);
+            itemBlock.valueConnection_ = input && input.connection.targetConnection;
+            i++;
+            itemBlock = itemBlock.nextConnection &&
+                itemBlock.nextConnection.targetBlock();
+        }
+    },
+    /**
+     * Modify this block to have the correct number of inputs.
+     * @private
+     * @this Blockly.Block
+     */
+    updateShape_: function() {
+        if (this.itemCount_ && this.getInput('EMPTY')) {
+            this.removeInput('EMPTY');
+        } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
+            this.appendDummyInput('EMPTY')
+                .appendField("Voeg een tekst-element toe.");
+        }
+        // Add new inputs.
+        for (var i = 0; i < this.itemCount_; i++) {
+            if (!this.getInput('ADD' + i)) {
+                var input = this.appendValueInput('ADD' + i);
+                if (i == 0) {
+                    input.appendField("EN");
+                }
+            }
+        }
+        // Remove deleted inputs.
+        while (this.getInput('ADD' + i)) {
+            this.removeInput('ADD' + i);
+            i++;
+        }
+    }
+};
+
+
+
+
+Blockly.Blocks['multi_or'] = {
+    /**
+     * Block for creating a list with any number of elements of any type.
+     * @this Blockly.Block
+     */
+    init: function() {
+        var thisBlock = this;
+        this.setHelpUrl(Blockly.Msg.LISTS_CREATE_WITH_HELPURL);
+        this.setColour(Blockly.Blocks.logic.HUE);
+        this.itemCount_ = 3;
+        this.updateShape_();
+        this.setOutput(true, 'Array');
+        this.setMutator(new Blockly.Mutator(['multi_or_block']));
+        this.setTooltip(Blockly.Msg.LISTS_CREATE_WITH_TOOLTIP);
+        // add context menu to edit the text in the multiline block.
+        this.customContextMenu = function(options){
+            var helpOption = {enabled: true};
+            helpOption.text = "Meerdere of-predicaten";
+            helpOption.callback = function() {
+                editMultiLineText(thisBlock);
+            };
+            // we want to add the new option to the start of the list
+            options = options.reverse();
+            options.push(helpOption);
+            options = options.reverse();
+        }
+    },
+
+    /**
+     * Create XML to represent the HTML-elements contained in this HTML block..
+     * @return {!Element} XML storage element.
+     * @this Blockly.Block
+     */
+    mutationToDom: function() {
+        var container = document.createElement('mutation');
+        container.setAttribute('items', this.itemCount_);
+        return container;
+    },
+    /**
+     * Parse XML to restore the list inputs.
+     * @param {!Element} xmlElement XML storage element.
+     * @this Blockly.Block
+     */
+    domToMutation: function(xmlElement) {
+        this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
+        this.updateShape_();
+    },
+    /**
+     * Populate the mutator's dialog with this block's components.
+     * @param {!Blockly.Workspace} workspace Mutator's workspace.
+     * @return {!Blockly.Block} Root block in mutator.
+     * @this Blockly.Block
+     */
+    decompose: function(workspace) {
+        var containerBlock = workspace.newBlock('multi_logic_container');
+        containerBlock.initSvg();
+        var connection = containerBlock.getInput('STACK').connection;
+        for (var i = 0; i < this.itemCount_; i++) {
+            var itemBlock = workspace.newBlock('multi_or_block');
+            itemBlock.initSvg();
+            connection.connect(itemBlock.previousConnection);
+            connection = itemBlock.nextConnection;
+        }
+        return containerBlock;
+    },
+    /**
+     * Reconfigure this block based on the mutator dialog's components.
+     * @param {!Blockly.Block} containerBlock Root block in mutator.
+     * @this Blockly.Block
+     */
+    compose: function(containerBlock) {
+        var itemBlock = containerBlock.getInputTargetBlock('STACK');
+        // Count number of inputs.
+        var connections = [];
+        while (itemBlock) {
+            connections.push(itemBlock.valueConnection_);
+            itemBlock = itemBlock.nextConnection &&
+                itemBlock.nextConnection.targetBlock();
+        }
+        // Disconnect any children that don't belong.
+        for (var i = 0; i < this.itemCount_; i++) {
+            var connection = this.getInput('ADD' + i).connection.targetConnection;
+            if (connection && connections.indexOf(connection) == -1) {
+                connection.disconnect();
+            }
+        }
+        this.itemCount_ = connections.length;
+        this.updateShape_();
+        // Reconnect any child blocks.
+        for (var i = 0; i < this.itemCount_; i++) {
+            Blockly.Mutator.reconnect(connections[i], this, 'ADD' + i);
+        }
+    },
+    /**
+     * Store pointers to any connected child blocks.
+     * @param {!Blockly.Block} containerBlock Root block in mutator.
+     * @this Blockly.Block
+     */
+    saveConnections: function(containerBlock) {
+        var itemBlock = containerBlock.getInputTargetBlock('STACK');
+        var i = 0;
+        while (itemBlock) {
+            var input = this.getInput('ADD' + i);
+            itemBlock.valueConnection_ = input && input.connection.targetConnection;
+            i++;
+            itemBlock = itemBlock.nextConnection &&
+                itemBlock.nextConnection.targetBlock();
+        }
+    },
+    /**
+     * Modify this block to have the correct number of inputs.
+     * @private
+     * @this Blockly.Block
+     */
+    updateShape_: function() {
+        if (this.itemCount_ && this.getInput('EMPTY')) {
+            this.removeInput('EMPTY');
+        } else if (!this.itemCount_ && !this.getInput('EMPTY')) {
+            this.appendDummyInput('EMPTY')
+                .appendField("Voeg een of-element toe.");
+        }
+        // Add new inputs.
+        for (var i = 0; i < this.itemCount_; i++) {
+            if (!this.getInput('ADD' + i)) {
+                var input = this.appendValueInput('ADD' + i);
+                if (i == 0) {
+                    input.appendField("OF");
+                }
+            }
+        }
+        // Remove deleted inputs.
+        while (this.getInput('ADD' + i)) {
+            this.removeInput('ADD' + i);
+            i++;
+        }
+    }
+};
