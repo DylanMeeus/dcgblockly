@@ -102,6 +102,17 @@ Blockly.Dcg['text_startsWith'] = function(block) {
     return [code,Blockly.Dcg.ORDER_NONE];
 };
 
+
+Blockly.Dcg['text_startsWithIgnoreCase'] = function(block) {
+    // Block for splitting text into a list, or joining a list into text.
+    var argument0 = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
+    var argument1 = Blockly.Dcg.valueToCode(block, 'B', Blockly.Dcg.ORDER_NONE);
+
+    var code = argument0 + ' startsWithIgnoreCase ' + argument1;
+
+    return [code,Blockly.Dcg.ORDER_NONE];
+};
+
 /**
  *
  * @param block
@@ -113,6 +124,16 @@ Blockly.Dcg['text_endsWith'] = function(block) {
     var argument1 = Blockly.Dcg.valueToCode(block, 'B', Blockly.Dcg.ORDER_NONE);
 
     var code = argument0 + ' endsWith ' + argument1;
+
+    return [code,Blockly.Dcg.ORDER_NONE];
+};
+
+Blockly.Dcg['text_endsWithIgnoreCase'] = function(block) {
+    // Block for splitting text into a list, or joining a list into text.
+    var argument0 = Blockly.Dcg.valueToCode(block, 'A', Blockly.Dcg.ORDER_NONE);
+    var argument1 = Blockly.Dcg.valueToCode(block, 'B', Blockly.Dcg.ORDER_NONE);
+
+    var code = argument0 + ' endsWithIgnoreCase ' + argument1;
 
     return [code,Blockly.Dcg.ORDER_NONE];
 };
